@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe · Autem — Apent Holding</title>
+<style>
+/* ══════════════════════════════════════════════════════
+   VARIÁVEIS DE MARCA — AUTEM (atual)
+   Para migrar para Apent: editar SOMENTE este bloco :root
+   Nenhuma cor hardcoded fora daqui.
+══════════════════════════════════════════════════════ */
+:root {
+  --brand-primary:   #3A4FD6;
+  --brand-dark:      #0D0E1A;
+  --brand-purple:    #391E7A;
+  --brand-accent:    #45EBCB;
+  --brand-light:     #F9FAFD;
+  --brand-accent-lt: #E4EDFF;
+  --brand-mid:       #424242;
+  --brand-gray:      #F9FAFD;
+
+  /* Sistema UI — neutro, não muda com a marca */
+  --bg:       #ECEAE6;
+  --white:    #FFFFFF;
+  --border:   #D8D8D2;
+  --block:    #E2E0DA;
+  --block-dk: #C8C6BE;
+  --text:     #1A1A1A;
+  --muted:    #88887E;
+  --red:      #C8001A;
+  --red-bg:   #FFF3F3;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Courier New',monospace;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5}
+
+/* ── TOP NAV ── */
+.topbar{position:fixed;top:0;left:0;right:0;height:50px;background:#111;display:flex;align-items:center;padding:0 20px;gap:4px;z-index:300;border-bottom:2px solid #222}
+.tlogo{font-size:11px;color:#666;margin-right:14px;white-space:nowrap;letter-spacing:.05em}
+.tlogo strong{color:#fff}
+.tab{padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;color:#777;border:none;background:transparent;font-family:'Courier New',monospace;transition:.15s;white-space:nowrap}
+.tab:hover{background:#2a2a2a;color:#fff}
+.tab.active{background:var(--brand-primary);color:#fff}
+.tsep{width:1px;height:22px;background:#2a2a2a;margin:0 6px;flex-shrink:0}
+.tbadge{margin-left:auto;font-size:10px;color:#444;background:#1a1a1a;padding:4px 10px;border-radius:4px;white-space:nowrap}
+
+/* ── CANVAS / PAGES ── */
+.canvas{margin-top:50px;padding:28px}
+.page{display:none}
+.page.active{display:block}
+.browser{max-width:1100px;margin:0 auto;background:var(--white);border-radius:10px;box-shadow:0 6px 40px rgba(0,0,0,.14);overflow:hidden}
+.bbar{background:#E8E6E0;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.dots{display:flex;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dr{background:#FF5F57}.dy{background:#FFBD2E}.dg{background:#28C840}
+.burl{flex:1;background:var(--white);border-radius:4px;padding:4px 10px;font-size:11px;color:#666;border:1px solid var(--border)}
+.blabel{font-size:10px;color:#999}
+
+/* ── SITE HEADER ── */
+.siteheader{background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:14px 44px;gap:0}
+.logo{background:var(--block);width:88px;height:24px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;color:#555;letter-spacing:.1em;flex-shrink:0}
+.sitenav{display:flex;gap:22px;margin-left:28px}
+.snlink{font-size:11px;color:var(--muted);padding:2px 0;font-family:sans-serif}
+.snlink.on{color:var(--text);border-bottom:1.5px solid var(--text)}
+.sitecta{background:var(--brand-dark);color:#fff;padding:8px 18px;border-radius:5px;font-size:11px;font-weight:bold;font-family:sans-serif;letter-spacing:.03em;flex-shrink:0}
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:14px}
+.sitelogin{font-size:11px;color:var(--muted);font-family:sans-serif;text-decoration:underline;cursor:pointer;white-space:nowrap}
+
+/* ── NOTE (anotação) ── */
+.note{position:absolute;top:14px;right:14px;background:var(--red-bg);border:1px solid var(--red);border-radius:5px;padding:8px 12px;color:var(--red);font-size:10px;max-width:230px;line-height:1.45;z-index:10}
+.note strong{display:block;margin-bottom:3px;font-size:11px}
+.section{border-bottom:1px solid var(--border);position:relative}
+.inner{padding:52px 52px}
+.dark-bg{background:var(--brand-dark)}
+.tint-bg{background:var(--brand-accent-lt)}
+.purple-bg{background:var(--brand-purple)}
+
+/* TYPOGRAPHY */
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.eyebrow-inv{color:var(--brand-accent)}
+.h2{font-size:22px;font-weight:700;line-height:1.28;font-family:sans-serif;margin-bottom:8px}
+.h2-inv{color:#fff}
+.sub{font-size:12px;color:var(--muted);line-height:1.65;max-width:520px;margin-bottom:36px;font-family:sans-serif}
+.sub-inv{color:#bbb}
+
+/* BLOCK (placeholder img) */
+.blk{background:var(--block);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;letter-spacing:.04em;text-align:center}
+.blk-dk{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0D0E1A 55%,#391E7A 100%);padding:60px 52px 52px;display:flex;align-items:center;gap:48px;min-height:430px}
+.hero-content{flex:1}
+.heyebrow{font-size:10px;letter-spacing:.14em;color:var(--brand-accent);margin-bottom:14px;text-transform:uppercase;font-family:sans-serif}
+.h1{font-size:28px;font-weight:700;color:#fff;line-height:1.22;margin-bottom:16px;font-family:sans-serif;max-width:480px}
+.h1 em{color:var(--brand-accent);font-style:normal}
+.hsub{font-size:12px;color:#aaa;line-height:1.65;max-width:420px;margin-bottom:28px;font-family:sans-serif}
+.ctarow{display:flex;gap:12px;align-items:center}
+.cta-p{background:var(--brand-primary);color:#fff;padding:12px 24px;border-radius:6px;font-size:12px;font-weight:bold;font-family:sans-serif}
+.cta-s{color:#ccc;font-size:11px;font-family:sans-serif;text-decoration:underline}
+.trustbadge{display:flex;align-items:center;gap:10px;margin-top:24px;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;width:fit-content}
+.tbicon{width:30px;height:30px;border-radius:50%;background:rgba(58,79,214,.35);display:flex;align-items:center;justify-content:center;font-size:14px}
+.tbtext{color:#ccc;font-size:10px;font-family:sans-serif;line-height:1.4}
+.tbtext strong{color:#fff;display:block;font-size:11px}
+.hero-visual{width:290px;height:240px;border-radius:10px;flex-shrink:0}
+
+/* ── ECOSSISTEMA GRID ── */
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.eco-card{padding:20px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05)}
+.eco-icon{font-size:26px;margin-bottom:10px}
+.eco-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:sans-serif}
+.eco-desc{font-size:11px;color:#aaa;line-height:1.5;font-family:sans-serif}
+.eco-tag{display:inline-block;margin-top:10px;background:rgba(69,235,203,.15);color:var(--brand-accent);font-size:10px;padding:2px 8px;border-radius:20px;font-weight:bold}
+
+/* ── SIMULADOR ── */
+.simbox{background:linear-gradient(135deg,#391E7A 0%,#3A4FD6 100%);border-radius:12px;padding:32px 36px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.sim-eyebrow{font-size:10px;color:var(--brand-accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-family:sans-serif}
+.sim-title{font-size:20px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;font-family:sans-serif}
+.sim-sub{font-size:11px;color:#ccc;line-height:1.55;font-family:sans-serif}
+.sim-fields{display:flex;flex-direction:column;gap:13px}
+.sflabel{font-size:10px;color:#aaa;margin-bottom:4px;font-family:sans-serif}
+.sfield{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:10px 14px;color:#fff;font-size:13px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center}
+.sslider{background:rgba(255,255,255,.15);border-radius:20px;height:4px;position:relative;margin-top:6px}
+.ssfill{height:100%;background:var(--brand-accent);border-radius:20px;width:60%}
+.ssthumb{width:14px;height:14px;border-radius:50%;background:#fff;position:absolute;top:-5px;left:58%;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.sresult{background:rgba(255,255,255,.08);border-radius:6px;padding:12px 14px;display:flex;justify-content:space-between}
+.sreslabel{font-size:10px;color:#aaa;font-family:sans-serif}
+.sresval{font-size:16px;color:var(--brand-accent);font-weight:bold;font-family:sans-serif}
+.sbtn{background:var(--brand-accent);color:#0D0E1A;padding:11px 0;border-radius:6px;font-weight:bold;font-size:12px;font-family:sans-serif;text-align:center}
+
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{text-align:center;padding:0 16px;border-right:1px dashed var(--border)}
+.step:last-child{border-right:none}
+.stepnum{width:36px;height:36px;border-radius:50%;background:var(--brand-primary);color:#fff;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:sans-serif}
+.steptitle{font-size:12px;font-weight:700;margin-bottom:6px;font-family:sans-serif}
+.stepdesc{font-size:11px;color:var(--muted);line-height:1.55;font-family:sans-serif}
+
+/* ── CRED ── */
+.credbox{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.credstats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.credstat{background:var(--block);border-radius:8px;padding:16px;text-align:center}
+.crednum{font-size:22px;font-weight:700;color:var(--brand-primary);font-family:sans-serif;display:block}
+.credlabel{font-size:10px;color:var(--muted);font-family:sans-serif;margin-top:4px}
+.credbadges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.credbadge{background:var(--block);border-radius:6px;padding:9px 14px;font-size:11px;font-family:sans-serif;display:flex;align-items:center;gap:7px}
+
+/* ── BLOG CARDS ── */
+.blogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.bcard{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.bcard-img{height:130px}
+.bcard-body{padding:14px}
+.bcat{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-primary);font-weight:bold;margin-bottom:6px}
+.btitle{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);margin-bottom:6px;font-family:sans-serif}
+.bexcerpt{font-size:11px;color:var(--muted);line-height:1.5;font-family:sans-serif}
+.bmeta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);font-family:sans-serif}
+
+/* ── FOOTER ── */
+.footer{background:var(--brand-dark);padding:40px 52px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;border-top:1px solid rgba(255,255,255,.06)}
+.fcol h4{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:12px}
+.flink{font-size:11px;color:#666;margin-bottom:6px;font-family:sans-serif}
+.fdiscl{background:#060610;padding:14px 52px;font-size:10px;color:#3a3a3a;font-family:sans-serif;line-height:1.6;border-top:1px solid rgba(255,255,255,.04)}
+
+/* ══════════════════════════════════
+   PÁGINA SOLUÇÕES — estilos extras
+══════════════════════════════════ */
+.prod-nav{display:flex;gap:0;border-bottom:2px solid var(--border);background:var(--white)}
+.ptab{padding:14px 28px;font-size:12px;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:sans-serif;display:flex;align-items:center;gap:7px;transition:.15s}
+.ptab:hover{color:var(--text)}
+.ptab.on{color:var(--brand-primary);border-color:var(--brand-primary);font-weight:600}
+
+.prod-section{display:none}
+.prod-section.active{display:block}
+
+/* hero produto */
+.prod-hero{padding:48px 52px;display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:center}
+.ph-eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-primary);margin-bottom:10px;font-family:sans-serif}
+.ph-h1{font-size:24px;font-weight:700;line-height:1.28;font-family:sans-serif;margin-bottom:12px}
+.ph-sub{font-size:12px;color:var(--muted);line-height:1.65;font-family:sans-serif;margin-bottom:22px}
+.ph-cta{display:inline-block;background:var(--brand-primary);color:#fff;padding:11px 22px;border-radius:6px;font-size:12px;font-weight:bold;font-family:sans-serif}
+.ph-img{height:260px;border-radius:10px}
+
+/* feature list */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+.feat-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:18px}
+.feat-icon{font-size:22px;margin-bottom:10px}
+.feat-name{font-size:12px;font-weight:700;margin-bottom:5px;font-family:sans-serif}
+.feat-desc{font-size:11px;color:var(--muted);line-height:1.55;font-family:sans-serif}
+
+/* comparativo tabela */
+.comp-table{width:100%;border-collapse:collapse;margin-top:8px}
+.comp-table th{background:var(--brand-dark);color:#fff;padding:12px 16px;font-size:11px;font-family:sans-serif;text-align:left;font-weight:600}
+.comp-table th:first-child{border-radius:6px 0 0 0}
+.comp-table th:last-child{border-radius:0 6px 0 0}
+.comp-table td{padding:11px 16px;font-size:11px;font-family:sans-serif;border-bottom:1px solid var(--border);vertical-align:middle}
+.comp-table tr:nth-child(even) td{background:var(--brand-gray)}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table td:first-child{font-weight:600;color:var(--text)}
+.tag-risk{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:bold}
+.tag-low{background:#DDFBEE;color:#00875A}
+.tag-med{background:#FFF3CD;color:#B07500}
+.tag-high{background:#FFE5E5;color:#C8001A}
+
+/* cartões visuais */
+.cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card-item{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.card-visual{height:120px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.card-body{padding:14px}
+.card-name{font-size:12px;font-weight:700;font-family:sans-serif;margin-bottom:6px}
+.card-desc{font-size:11px;color:var(--muted);line-height:1.5;font-family:sans-serif}
+.card-tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px}
+.ctag{font-size:10px;background:var(--brand-accent-lt);color:var(--brand-primary);padding:2px 8px;border-radius:12px}
+
+/* seguros grid */
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.seg-card{border:1px solid var(--border);border-radius:8px;padding:18px;background:var(--white)}
+.seg-icon{font-size:28px;margin-bottom:12px}
+.seg-name{font-size:13px;font-weight:700;font-family:sans-serif;margin-bottom:8px}
+.seg-desc{font-size:11px;color:var(--muted);line-height:1.55;font-family:sans-serif;margin-bottom:10px}
+.seg-features{display:flex;flex-direction:column;gap:4px}
+.seg-feat{font-size:10px;color:var(--muted);font-family:sans-serif;display:flex;align-items:center;gap:6px}
+.seg-feat::before{content:'✓';color:var(--brand-primary);font-weight:bold}
+
+/* sobre page */
+.missao-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.val-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:20px}
+.val-icon{font-size:22px;margin-bottom:10px}
+.val-name{font-size:13px;font-weight:700;font-family:sans-serif;margin-bottom:6px}
+.val-desc{font-size:11px;color:var(--muted);font-family:sans-serif;line-height:1.55}
+.btgbox{background:var(--brand-dark);border-radius:12px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.btg-items{display:flex;flex-direction:column;gap:12px}
+.btg-item{background:rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.btg-item-text{color:#ccc;font-size:11px;font-family:sans-serif;line-height:1.45}
+.btg-item-text strong{color:#fff;display:block;margin-bottom:2px}
+
+/* blog page */
+.bloghero{background:linear-gradient(135deg,var(--brand-primary),var(--brand-purple));padding:40px 52px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.bcat-tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.bcat-tab{padding:6px 16px;border-radius:20px;font-size:11px;border:1px solid var(--border);background:var(--white);font-family:sans-serif;cursor:pointer}
+.bcat-tab.on{background:var(--brand-primary);color:#fff;border-color:var(--brand-primary)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOPBAR ═══════════════ -->
+<div class="topbar">
+  <div class="tlogo"><strong>AUTEM</strong> · Apent Holding &nbsp;—&nbsp; Wireframe v3</div>
+  <div class="tsep"></div>
+  <button class="tab active" onclick="goPage('home',this)">🏠 Home</button>
+  <button class="tab" onclick="goPage('solucoes',this)">📦 Soluções</button>
+  <button class="tab" onclick="goPage('sobre',this)">❓ Por que Autem?</button>
+  <button class="tab" onclick="goPage('blog',this)">📰 Blog</button>
+  <div class="tbadge">Lo-fi · Conteúdo real · CSS vars prontas p/ Apent</div>
+</div>
+
+<div class="canvas">
+
+<!-- ══════════════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+<div class="browser">
+  <div class="bbar"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="burl">autem.com.br</div><div class="blabel">HOME</div></div>
+  <div class="siteheader">
+    <div class="logo">AUTEM</div>
+    <div class="sitenav">
+      <div class="snlink on">Home</div>
+      <div class="snlink">Soluções</div>
+      <div class="snlink">Por que Autem?</div>
+      <div class="snlink">Blog</div>
+    </div>
+    <div class="header-actions"><div class="sitelogin">Já tenho conta</div><div class="sitecta">Abrir conta grátis →</div></div>
+  </div>
+
+  <!-- S1 HERO -->
+  <div class="section">
+    <div class="note"><strong>S1 — Hero de Autonomia</strong>Fundo escuro contrasta com o restante do site. BTG aparece como crachá de confiança, não como headline principal. CTA único e claro.</div>
+    <div class="hero">
+      <div class="hero-content">
+        <div class="heyebrow">Escritório Parceiro BTG Pactual</div>
+        <div class="h1">Seu banco, seus investimentos, <em>sua autonomia.</em></div>
+        <div class="hsub">Abra sua conta e invista sozinho — com a segurança do maior banco de investimentos da América Latina por trás. Sem pressão. Sem conflito de interesse. Do seu jeito.</div>
+        <div class="ctarow">
+          <div class="cta-p">Abrir conta grátis</div>
+          <div class="cta-s">Como funciona?</div>
+        </div>
+        <div class="trustbadge">
+          <div class="tbicon">🏦</div>
+          <div class="tbtext"><strong>Segurança BTG Pactual</strong>Instituição regulada CVM · FGC até R$ 250k</div>
+        </div>
+      </div>
+      <div class="hero-visual blk-dk" style="color:#aaa;font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:290px;height:240px;border-radius:10px">
+        <span style="font-size:32px">📱</span>[ Mock do app Autem ]<br>Dashboard / tela real
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 ECOSSISTEMA -->
+  <div class="section">
+    <div class="note"><strong>S2 — Ecossistema Macro</strong>Grid 4 colunas. Fundo escuro garante destaque. Ícone grande + descrição curta. Cada card = âncora para a página de Soluções.</div>
+    <div class="inner dark-bg">
+      <div class="eyebrow eyebrow-inv">O ecossistema Autem</div>
+      <div class="h2 h2-inv">Tudo que você precisa, no mesmo lugar</div>
+      <div class="sub sub-inv">De R$ 10 a grandes oportunidades — investimentos, conta, cartão e proteção em um só app.</div>
+      <div class="eco-grid">
+        <div class="eco-card"><div class="eco-icon">📈</div><div class="eco-name">Investimentos</div><div class="eco-desc">CDB, LCI, LCA, fundos e renda variável. De R$ 10 ao seu próprio jeito.</div><div class="eco-tag">A partir de R$ 10</div></div>
+        <div class="eco-card"><div class="eco-icon">🏦</div><div class="eco-name">Conta Digital</div><div class="eco-desc">Conta corrente sem taxas, Pix ilimitado e rendimento automático no saldo.</div><div class="eco-tag">Sem taxas</div></div>
+        <div class="eco-card"><div class="eco-icon">💳</div><div class="eco-name">Cartões</div><div class="eco-desc">Gold, Platinum, Black e TAP — crédito e débito com benefícios reais.</div><div class="eco-tag">Crédito + Débito</div></div>
+        <div class="eco-card"><div class="eco-icon">🛡️</div><div class="eco-name">Proteção</div><div class="eco-desc">Seguros de vida, residência, viagem e previdência para o longo prazo.</div><div class="eco-tag">Seguros + Prev.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3 SIMULADOR -->
+  <div class="section">
+    <div class="note"><strong>S3 — Simulador de Objetivos ★ Wildcard</strong>Diferencial da plataforma. Usuário define meta, plataforma sugere o produto. Reforça o conceito "auto-guia" e converte melhor que banner estático.</div>
+    <div class="inner">
+      <div class="eyebrow">Simulador de objetivos</div>
+      <div class="h2">Quanto você quer ter? A Autem mostra o caminho.</div>
+      <div class="sub">Coloque sua meta e descubra quanto guardar por mês — sem precisar entender de finanças.</div>
+      <div class="simbox">
+        <div>
+          <div class="sim-eyebrow">🎯 Seu objetivo financeiro</div>
+          <div class="sim-title">De onde você quer chegar?</div>
+          <div class="sim-sub">Defina uma meta, um prazo e quanto já tem guardado. Nós mostramos o produto certo, o rendimento esperado e o caminho mais curto até lá.</div>
+        </div>
+        <div class="sim-fields">
+          <div><div class="sflabel">Quero ter</div><div class="sfield">R$ 50.000 <span>✏️</span></div></div>
+          <div><div class="sflabel">Em quanto tempo</div><div class="sfield">3 anos <span>▾</span></div><div class="sslider"><div class="ssfill"></div><div class="ssthumb"></div></div></div>
+          <div class="sresult">
+            <div><div class="sreslabel">Guardar por mês</div><div class="sresval">R$ 1.180</div></div>
+            <div><div class="sreslabel">Produto sugerido</div><div class="sresval" style="font-size:13px;color:#fff">CDB 115% CDI</div></div>
+          </div>
+          <div class="sbtn">Abrir minha conta e começar →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 COMO FUNCIONA -->
+  <div class="section">
+    <div class="note"><strong>S4 — O Guia Autem</strong>4 passos horizontais. Elimina a objeção "preciso de especialista". Linguagem de plataforma moderna — sem falar em assessor.</div>
+    <div class="inner tint-bg">
+      <div class="eyebrow">Como funciona</div>
+      <div class="h2">Você guia. A plataforma ajuda.</div>
+      <div class="sub">Nossa plataforma foi desenhada para você tomar as melhores decisões sozinho — com toda a informação que precisa, na hora certa.</div>
+      <div class="steps">
+        <div class="step"><div class="stepnum">1</div><div class="steptitle">Abre sua conta</div><div class="stepdesc">100% online, em 5 minutos. Sem taxa, sem burocracia. Só documento e selfie.</div></div>
+        <div class="step"><div class="stepnum">2</div><div class="steptitle">Define seu objetivo</div><div class="stepdesc">Emergência, viagem, aposentadoria ou casa própria. A plataforma filtra os produtos certos.</div></div>
+        <div class="step"><div class="stepnum">3</div><div class="steptitle">Escolhe e investe</div><div class="stepdesc">Acesso à prateleira completa BTG Pactual. Você decide o valor, o prazo e o risco.</div></div>
+        <div class="step"><div class="stepnum">4</div><div class="steptitle">Acompanha e cresce</div><div class="stepdesc">Dashboard em tempo real, relatórios claros e conteúdo educativo pra você evoluir.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 CREDIBILIDADE -->
+  <div class="section">
+    <div class="note"><strong>S5 — Credibilidade BTG</strong>Transferência de confiança com números concretos. 2 colunas: copy + 4 estatísticas. "Banco grande, plataforma moderna."</div>
+    <div class="inner">
+      <div class="credbox">
+        <div>
+          <div class="eyebrow">Por que confiar</div>
+          <div class="h2">A tecnologia de quem faz por conta própria. A segurança de quem já provou.</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.65;font-family:sans-serif;margin-top:8px;max-width:440px">A Autem é um escritório parceiro do BTG Pactual — o maior banco de investimentos da América Latina. Isso significa que você investe com autonomia total e tem toda a estrutura regulatória de uma instituição com R$ 600bi de ativos por trás.</div>
+          <div class="credbadges">
+            <div class="credbadge">🏛️ Regulado CVM</div>
+            <div class="credbadge">🔐 FGC até R$ 250k</div>
+            <div class="credbadge">⚡ App BTG integrado</div>
+          </div>
+        </div>
+        <div class="credstats">
+          <div class="credstat"><span class="crednum">R$ 600bi+</span><span class="credlabel">Ativos BTG Pactual</span></div>
+          <div class="credstat"><span class="crednum">35 anos</span><span class="credlabel">de mercado financeiro</span></div>
+          <div class="credstat"><span class="crednum">R$ 10</span><span class="credlabel">Para começar a investir</span></div>
+          <div class="credstat"><span class="crednum">5 min</span><span class="credlabel">Para abrir a conta</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 BLOG CTA -->
+  <div class="section">
+    <div class="note"><strong>S6 — Chamada Blog</strong>3 posts recentes. Posiciona a Autem como fonte de educação, não só de venda. Títulos reais já propostos.</div>
+    <div class="inner">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px">
+        <div><div class="eyebrow">Educação financeira</div><div class="h2">Aprenda enquanto cresce</div></div>
+        <div style="font-size:12px;color:var(--brand-primary);font-family:sans-serif;text-decoration:underline">Ver todos →</div>
+      </div>
+      <div class="blogrid">
+        <div class="bcard"><div class="bcard-img blk">[ Foto ]</div><div class="bcard-body"><div class="bcat">Iniciantes</div><div class="btitle">Como começar a investir com R$ 100 — e por que você já devia ter começado</div><div class="bexcerpt">Sabe aquela desculpa de "vou investir quando tiver mais dinheiro"? Vamos acabar com ela.</div><div class="bmeta"><span>8 mai</span><span>5 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk">[ Foto ]</div><div class="bcard-body"><div class="bcat">Mercado</div><div class="btitle">Selic em queda: o que muda no seu CDB e o que fazer agora</div><div class="bexcerpt">Toda vez que o Copom mexe na taxa, os investimentos de renda fixa mudam. Entenda.</div><div class="bmeta"><span>3 mai</span><span>4 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk">[ Foto ]</div><div class="bcard-body"><div class="bcat">Economia</div><div class="btitle">Reserva de emergência: quanto você precisa ter e onde guardar</div><div class="bexcerpt">Antes de qualquer investimento, você precisa de uma base sólida. Essa é a regra número um.</div><div class="bmeta"><span>28 abr</span><span>6 min</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div><div class="logo">AUTEM</div><div class="flink" style="margin-top:12px;color:#555;font-size:10px">Uma solução da <strong style="color:#666">Apent Holding</strong><br>Escritório Parceiro BTG Pactual · © 2025</div></div>
+    <div><h4>Soluções</h4><div class="flink">Investimentos</div><div class="flink">Conta Digital</div><div class="flink">Cartões</div><div class="flink">Proteção</div></div>
+    <div><h4>Empresa</h4><div class="flink">Por que Autem?</div><div class="flink">Blog</div><div class="flink">Apent Holding</div></div>
+    <div><h4>Legal</h4><div class="flink">Política de Privacidade</div><div class="flink">LGPD</div><div class="flink">Termos de Uso</div></div>
+  </div>
+  <div class="fdiscl">Autem Investimentos é um escritório parceiro BTG Pactual S.A., credenciado pela CVM, Res. 178. Investimentos envolvem riscos. Rentabilidade passada não garante rentabilidade futura. CNPJ: [a confirmar] · São Paulo, SP.</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SOLUÇÕES
+══════════════════════════════════════════════════════ -->
+<div class="page" id="page-solucoes">
+<div class="browser">
+  <div class="bbar"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="burl">autem.com.br/solucoes</div><div class="blabel">SOLUÇÕES</div></div>
+  <div class="siteheader">
+    <div class="logo">AUTEM</div>
+    <div class="sitenav">
+      <div class="snlink">Home</div>
+      <div class="snlink on">Soluções</div>
+      <div class="snlink">Por que Autem?</div>
+      <div class="snlink">Blog</div>
+    </div>
+    <div class="header-actions"><div class="sitelogin">Já tenho conta</div><div class="sitecta">Abrir conta grátis →</div></div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="section">
+    <div class="note"><strong>Page Hero — Soluções</strong>Apresenta os 4 pilares. Fundo escuro coerente com o hero da home. Os 4 ícones servem como tabs de navegação interna.</div>
+    <div class="hero" style="min-height:260px;padding:40px 52px;flex-direction:column;align-items:flex-start;gap:0">
+      <div class="heyebrow">Conheça nossas soluções</div>
+      <div class="h1" style="font-size:24px;max-width:600px">Um ecossistema completo para o seu dinheiro trabalhar por você</div>
+      <div class="hsub" style="margin-bottom:0">Investimentos, conta, cartões e proteção — tudo integrado, tudo no app BTG Pactual.</div>
+    </div>
+  </div>
+
+  <!-- TABS DE PRODUTO -->
+  <div class="prod-nav">
+    <div class="ptab on" onclick="showProd('invest',this)">📈 Investimentos</div>
+    <div class="ptab" onclick="showProd('conta',this)">🏦 Conta Digital</div>
+    <div class="ptab" onclick="showProd('cartoes',this)">💳 Cartões</div>
+    <div class="ptab" onclick="showProd('protecao',this)">🛡️ Proteção</div>
+  </div>
+
+  <!-- ── INVESTIMENTOS ── -->
+  <div class="prod-section active" id="prod-invest">
+    <div class="note"><strong>Produto: Investimentos</strong>Hero com CTA + tabela comparativa dos produtos principais + features da plataforma. Objetivo: o usuário entender as opções sem precisar de assessor.</div>
+
+    <div class="inner" style="background:var(--brand-gray)">
+      <div class="prod-hero" style="padding:0;background:transparent">
+        <div>
+          <div class="ph-eyebrow">Renda Fixa · Fundos · Renda Variável</div>
+          <div class="ph-h1">Invista do seu jeito, com a curadoria de quem entende o mercado</div>
+          <div class="ph-sub">Acesso à prateleira completa BTG Pactual. CDB, LCI, LCA, fundos multimercado, ações e BDRs — a partir de R$ 10, sem precisar de assessor.</div>
+          <div class="ph-cta">Ver todos os investimentos →</div>
+        </div>
+        <div class="ph-img blk" style="display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted)">[Dashboard de investimentos]</div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="eyebrow">Comparativo de produtos</div>
+      <div class="h2" style="margin-bottom:20px">Encontre o produto certo para o seu objetivo</div>
+      <table class="comp-table">
+        <tr>
+          <th>Produto</th>
+          <th>Rentabilidade referência</th>
+          <th>Liquidez</th>
+          <th>Valor mínimo</th>
+          <th>Imposto IR</th>
+          <th>Risco</th>
+        </tr>
+        <tr><td>CDB BTG Pactual</td><td>Até 115% CDI</td><td>No vencimento</td><td>R$ 1.000</td><td>Sim (tabela regressiva)</td><td><span class="tag-risk tag-low">Baixo</span></td></tr>
+        <tr><td>CDB Liquidez Diária</td><td>100% CDI</td><td>D+0</td><td>R$ 100</td><td>Sim</td><td><span class="tag-risk tag-low">Baixo</span></td></tr>
+        <tr><td>LCI / LCA BTG</td><td>Até 96% CDI</td><td>No vencimento</td><td>R$ 5.000</td><td>Isento</td><td><span class="tag-risk tag-low">Baixo</span></td></tr>
+        <tr><td>Fundos DI / RF</td><td>CDI – 0,1%</td><td>D+1</td><td>R$ 500</td><td>Come-cotas</td><td><span class="tag-risk tag-low">Baixo</span></td></tr>
+        <tr><td>Fundos Multimercado</td><td>CDI+ / variável</td><td>D+30 a D+60</td><td>R$ 1.000</td><td>Come-cotas</td><td><span class="tag-risk tag-med">Médio</span></td></tr>
+        <tr><td>Ações e BDRs</td><td>Mercado</td><td>D+2 (B3)</td><td>R$ 10 (fração)</td><td>15% lucro</td><td><span class="tag-risk tag-high">Alto</span></td></tr>
+        <tr><td>Tesouro Direto</td><td>IPCA+ / Selic</td><td>D+1 (horário)</td><td>R$ 35</td><td>Sim</td><td><span class="tag-risk tag-low">Baixo</span></td></tr>
+      </table>
+    </div>
+
+    <div class="inner" style="background:var(--brand-gray)">
+      <div class="eyebrow">Por que investir pela Autem</div>
+      <div class="h2" style="margin-bottom:24px">A plataforma que guia sem pressionar</div>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="feat-icon">🎯</div><div class="feat-name">Filtro por objetivo</div><div class="feat-desc">Selecione sua meta (emergência, viagem, aposentadoria) e a plataforma filtra os produtos mais adequados automaticamente.</div></div>
+        <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-name">Comparador integrado</div><div class="feat-desc">Compare rentabilidade líquida de IR de qualquer produto, lado a lado, em tempo real. Sem planilha, sem calculadora.</div></div>
+        <div class="feat-card"><div class="feat-icon">🔔</div><div class="feat-name">Alertas de vencimento</div><div class="feat-desc">Notificação no app quando um investimento vence — com sugestão automática de reinvestimento.</div></div>
+        <div class="feat-card"><div class="feat-icon">🌎</div><div class="feat-name">Internacional</div><div class="feat-desc">Acesso a BDRs, ETFs internacionais e conta em dólar para quem quer diversificar além do Brasil.</div></div>
+        <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-name">Tudo no app</div><div class="feat-desc">Abrir, acompanhar, resgatar e reinvestir — sem ligar, sem agência, sem burocracia. App BTG Pactual integrado.</div></div>
+        <div class="feat-card"><div class="feat-icon">🏆</div><div class="feat-name">Carteira diversificada</div><div class="feat-desc">Recomendações de alocação por perfil de risco — do conservador ao arrojado — sem conflito de interesse.</div></div>
+      </div>
+    </div>
+
+    <div class="inner dark-bg" style="text-align:center;padding:40px 52px">
+      <div class="eyebrow eyebrow-inv">Pronto para começar?</div>
+      <div class="h2 h2-inv" style="margin-bottom:8px">Abra sua conta e invista ainda hoje</div>
+      <div style="font-size:12px;color:#aaa;font-family:sans-serif;margin-bottom:22px">100% online · Sem taxa de abertura · Sem saldo mínimo</div>
+      <div style="display:inline-block" class="cta-p">Abrir conta grátis →</div>
+    </div>
+  </div>
+
+  <!-- ── CONTA DIGITAL ── -->
+  <div class="prod-section" id="prod-conta">
+    <div class="note"><strong>Produto: Conta Digital</strong>Conta corrente BTG com rendimento automático. Destaques: Pix ilimitado, sem taxa, Minhas Finanças, Conta Jovem e Internacional.</div>
+
+    <div class="inner" style="background:var(--brand-gray)">
+      <div class="prod-hero" style="padding:0;background:transparent">
+        <div>
+          <div class="ph-eyebrow">Conta Corrente · Sem taxas</div>
+          <div class="ph-h1">Uma conta que trabalha pelo seu dinheiro, não contra ele</div>
+          <div class="ph-sub">Pix ilimitado, sem mensalidade, sem taxas escondidas — e seu saldo rende automaticamente todo dia no CDI. Tudo no app BTG Pactual.</div>
+          <div class="ph-cta">Abrir minha conta →</div>
+        </div>
+        <div class="ph-img blk">[Tela da conta no app]</div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="eyebrow">O que você tem na Conta Autem BTG</div>
+      <div class="h2" style="margin-bottom:24px">Funcionalidades que fazem a diferença no dia a dia</div>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="feat-icon">💰</div><div class="feat-name">Rendimento automático</div><div class="feat-desc">Saldo parado rendendo 100% CDI todo dia, automaticamente — sem precisar aplicar manualmente.</div></div>
+        <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-name">Pix ilimitado e grátis</div><div class="feat-desc">Envie e receba Pix sem limite de quantidade ou valor, 24h por dia. Sem tarifa adicional.</div></div>
+        <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-name">Minhas Finanças</div><div class="feat-desc">Controle de gastos por categoria, definição de limites mensais e tags personalizadas para organizar sua vida financeira.</div></div>
+        <div class="feat-card"><div class="feat-icon">👨‍👩‍👧</div><div class="feat-name">Conta Compartilhada</div><div class="feat-desc">Autorize pessoas de confiança a acessar e movimentar sua conta — sem compartilhar senha. Controle total pelo app.</div></div>
+        <div class="feat-card"><div class="feat-icon">🌍</div><div class="feat-name">Conta Internacional</div><div class="feat-desc">Conta em dólar integrada. Câmbio instantâneo, cartão de débito físico e virtual para uso no exterior.</div></div>
+        <div class="feat-card"><div class="feat-icon">🤖</div><div class="feat-name">Aurora — nossa bot</div><div class="feat-desc">Assistente virtual inteligente para dúvidas, transações e suporte 24h direto pelo app, sem fila de espera.</div></div>
+      </div>
+    </div>
+
+    <div class="inner tint-bg">
+      <div class="eyebrow">Comparativo de conta</div>
+      <div class="h2" style="margin-bottom:20px">Autem BTG vs. bancos tradicionais</div>
+      <table class="comp-table">
+        <tr><th>Funcionalidade</th><th>Autem BTG Pactual</th><th>Bancos tradicionais</th><th>Fintechs básicas</th></tr>
+        <tr><td>Mensalidade</td><td>✅ Grátis</td><td>❌ R$ 30–80/mês</td><td>✅ Grátis</td></tr>
+        <tr><td>Rendimento saldo</td><td>✅ 100% CDI automático</td><td>❌ Poupança (70% Selic)</td><td>⚠️ 100% CDI (só alguns)</td></tr>
+        <tr><td>Pix ilimitado</td><td>✅ Ilimitado e grátis</td><td>⚠️ Limite por conta</td><td>✅ Grátis</td></tr>
+        <tr><td>Conta Internacional</td><td>✅ Integrada no app</td><td>❌ Produto separado</td><td>❌ Não disponível</td></tr>
+        <tr><td>Investimentos integrados</td><td>✅ Prateleira BTG completa</td><td>⚠️ Produtos próprios</td><td>❌ Básico</td></tr>
+        <tr><td>Conta Jovem</td><td>✅ A partir de 12 anos</td><td>⚠️ Burocrático</td><td>❌ Não disponível</td></tr>
+      </table>
+    </div>
+
+    <div class="inner dark-bg" style="text-align:center;padding:40px 52px">
+      <div class="h2 h2-inv" style="margin-bottom:8px">Abra sua conta em 5 minutos</div>
+      <div style="font-size:12px;color:#aaa;font-family:sans-serif;margin-bottom:22px">100% online · Sem saldo mínimo · Sem burocracia</div>
+      <div style="display:inline-block" class="cta-p">Quero minha conta grátis →</div>
+    </div>
+  </div>
+
+  <!-- ── CARTÕES ── -->
+  <div class="prod-section" id="prod-cartoes">
+    <div class="note"><strong>Produto: Cartões</strong>4 cartões BTG disponíveis. Grid visual com cada opção. Destaques: sem anuidade condicional, IOF Zero na conta internacional, programa de pontos.</div>
+
+    <div class="inner" style="background:var(--brand-gray)">
+      <div class="prod-hero" style="padding:0;background:transparent">
+        <div>
+          <div class="ph-eyebrow">Crédito · Débito · Internacional</div>
+          <div class="ph-h1">O cartão certo para cada momento da sua vida</div>
+          <div class="ph-sub">Do Gold ao Ultrablue — crédito e débito com benefícios reais, programa de fidelidade e limite atrelado aos seus investimentos.</div>
+          <div class="ph-cta">Encontrar meu cartão →</div>
+        </div>
+        <div class="ph-img blk">[Cards BTG em destaque visual]</div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="eyebrow">Portfólio de cartões</div>
+      <div class="h2" style="margin-bottom:24px">Encontre o cartão BTG Pactual ideal para você</div>
+      <div class="cards-grid">
+        <div class="card-item">
+          <div class="card-visual" style="background:linear-gradient(135deg,#1a2a5e,#3A4FD6)">💳</div>
+          <div class="card-body">
+            <div class="card-name">Cartão de Crédito BTG Gold / Platinum / Black</div>
+            <div class="card-desc">Personalize seu cartão com o nível que faz sentido para você. Benefícios que evoluem conforme seu perfil financeiro.</div>
+            <div class="card-tags"><span class="ctag">Mastercard</span><span class="ctag">Pontos BTG</span><span class="ctag">IOF Zero*</span></div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-visual" style="background:linear-gradient(135deg,#111,#2a2a2a)">🖤</div>
+          <div class="card-body">
+            <div class="card-name">Cartão TAP BTG Pactual Black</div>
+            <div class="card-desc">Converta compras em passagens aéreas TAP Air Portugal. Para quem viaja frequentemente e quer benefícios reais.</div>
+            <div class="card-tags"><span class="ctag">Mastercard Black</span><span class="ctag">Milhas TAP</span><span class="ctag">Sala VIP</span></div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-visual" style="background:linear-gradient(135deg,#0D5FA6,#1a84e0)">🌎</div>
+          <div class="card-body">
+            <div class="card-name">Cartão de Débito Internacional BTG</div>
+            <div class="card-desc">Débito em dólar direto da Conta Internacional. Câmbio instantâneo, aceito em mais de 200 países.</div>
+            <div class="card-tags"><span class="ctag">Débito USD</span><span class="ctag">Apple Pay</span><span class="ctag">Google Pay</span></div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-visual" style="background:linear-gradient(135deg,#391E7A,#45EBCB)">💎</div>
+          <div class="card-body">
+            <div class="card-name">Cartão Ultrablue BTG Pactual</div>
+            <div class="card-desc">Experiência sofisticada com benefícios exclusivos. Para quem quer o melhor em cada etapa da viagem e do dia a dia.</div>
+            <div class="card-tags"><span class="ctag">Visa Infinite</span><span class="ctag">Concierge</span><span class="ctag">Seguro viagem</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner tint-bg">
+      <div class="eyebrow">Benefícios que fazem diferença</div>
+      <div class="h2" style="margin-bottom:24px">Mais do que um cartão — um instrumento financeiro</div>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-name">Limite por Investimentos</div><div class="feat-desc">Quanto mais você investe, maior o limite do cartão. Seu patrimônio trabalhando a seu favor.</div></div>
+        <div class="feat-card"><div class="feat-icon">🏷️</div><div class="feat-name">IOF Zero na Conta Internacional</div><div class="feat-desc">Pague no exterior sem o IOF adicional das operações de câmbio. Economia real em cada compra.</div></div>
+        <div class="feat-card"><div class="feat-icon">⭐</div><div class="feat-name">Programa de Fidelidade BTG</div><div class="feat-desc">Acumule pontos a cada compra. Resgate em passagens, produtos ou cashback direto na conta.</div></div>
+        <div class="feat-card"><div class="feat-icon">🔒</div><div class="feat-name">Seguro Conta e Cartão</div><div class="feat-desc">Proteção automática para compras e saques indevidos. Ativado pelo app, cancelamento 24h.</div></div>
+        <div class="feat-card"><div class="feat-icon">📲</div><div class="feat-name">Gestão pelo app</div><div class="feat-desc">Bloqueie, desbloqueie, altere limites e ative ou desative funcionalidades direto no app — sem ligar.</div></div>
+        <div class="feat-card"><div class="feat-icon">🎁</div><div class="feat-name">Módulos de benefícios</div><div class="feat-desc">Escolha benefícios adicionais conforme seu estilo: streaming, delivery, farmácia, saúde e mais.</div></div>
+      </div>
+    </div>
+
+    <div class="inner dark-bg" style="text-align:center;padding:40px 52px">
+      <div class="h2 h2-inv" style="margin-bottom:8px">Abra a conta e solicite seu cartão</div>
+      <div style="font-size:12px;color:#aaa;font-family:sans-serif;margin-bottom:22px">Sujeito a análise de crédito · Sem anuidade nos primeiros 12 meses</div>
+      <div style="display:inline-block" class="cta-p">Quero meu cartão BTG →</div>
+    </div>
+  </div>
+
+  <!-- ── PROTEÇÃO ── -->
+  <div class="prod-section" id="prod-protecao">
+    <div class="note"><strong>Produto: Proteção</strong>Seguros BTG + Previdência Privada. Grid com 6 produtos. Linguagem de proteção, não de medo. Foco em futuro e tranquilidade.</div>
+
+    <div class="inner" style="background:var(--brand-gray)">
+      <div class="prod-hero" style="padding:0;background:transparent">
+        <div>
+          <div class="ph-eyebrow">Seguros · Previdência · Proteção</div>
+          <div class="ph-h1">Proteja o que você construiu — e o que ainda vai construir</div>
+          <div class="ph-sub">Seguros de vida, residência, viagem e saúde pet — mais previdência privada — tudo integrado à sua conta BTG. Contrate em minutos pelo app.</div>
+          <div class="ph-cta">Ver soluções de proteção →</div>
+        </div>
+        <div class="ph-img blk">[Tela de seguros no app]</div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="eyebrow">Produtos de proteção disponíveis</div>
+      <div class="h2" style="margin-bottom:24px">Proteja cada etapa da sua vida</div>
+      <div class="seg-grid">
+        <div class="seg-card">
+          <div class="seg-icon">❤️</div>
+          <div class="seg-name">Seguro de Vida</div>
+          <div class="seg-desc">Proteção financeira para quem depende de você. Contratação 100% digital, sem exame médico para valores iniciais.</div>
+          <div class="seg-features">
+            <div class="seg-feat">Morte e invalidez permanente</div>
+            <div class="seg-feat">Doenças graves cobertas</div>
+            <div class="seg-feat">Assistência funeral incluída</div>
+            <div class="seg-feat">Gerenciamento pelo app</div>
+          </div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-icon">🏠</div>
+          <div class="seg-name">Seguro Residencial</div>
+          <div class="seg-desc">Proteção completa para seu lar — aluguel ou próprio. Cobre desde incêndio a danos elétricos e roubo.</div>
+          <div class="seg-features">
+            <div class="seg-feat">Incêndio, raio e explosão</div>
+            <div class="seg-feat">Danos elétricos</div>
+            <div class="seg-feat">Roubo de bens</div>
+            <div class="seg-feat">Responsabilidade civil</div>
+          </div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-icon">✈️</div>
+          <div class="seg-name">Seguro Viagem</div>
+          <div class="seg-desc">Viaje tranquilo pelo Brasil e pelo mundo. Cobertura de assistência médica, cancelamento e extravio de bagagem.</div>
+          <div class="seg-features">
+            <div class="seg-feat">Assistência médica 24h</div>
+            <div class="seg-feat">Cancelamento de viagem</div>
+            <div class="seg-feat">Extravio de bagagem</div>
+            <div class="seg-feat">Válido em mais de 150 países</div>
+          </div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-icon">🚗</div>
+          <div class="seg-name">Seguro Auto</div>
+          <div class="seg-desc">Proteção completa para seu veículo, com cobertura contra colisão, roubo, terceiros e assistência 24h.</div>
+          <div class="seg-features">
+            <div class="seg-feat">Colisão e roubo</div>
+            <div class="seg-feat">Danos a terceiros</div>
+            <div class="seg-feat">Assistência 24h</div>
+            <div class="seg-feat">App de acionamento</div>
+          </div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-icon">🐾</div>
+          <div class="seg-name">Plano de Saúde Pet</div>
+          <div class="seg-desc">Saúde e bem-estar para seu animal de estimação, com cobertura veterinária, vacinas e emergências.</div>
+          <div class="seg-features">
+            <div class="seg-feat">Consultas veterinárias</div>
+            <div class="seg-feat">Exames e vacinas</div>
+            <div class="seg-feat">Emergências 24h</div>
+            <div class="seg-feat">Rede credenciada nacional</div>
+          </div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-icon">🔮</div>
+          <div class="seg-name">Previdência Privada</div>
+          <div class="seg-desc">PGBL ou VGBL para construir seu futuro com eficiência tributária. Portabilidade sem carência, gestão BTG.</div>
+          <div class="seg-features">
+            <div class="seg-feat">PGBL e VGBL disponíveis</div>
+            <div class="seg-feat">Dedução IR no PGBL</div>
+            <div class="seg-feat">Portabilidade sem carência</div>
+            <div class="seg-feat">Gestão pelos melhores fundos BTG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner dark-bg" style="text-align:center;padding:40px 52px">
+      <div class="h2 h2-inv" style="margin-bottom:8px">Contrate sua proteção ainda hoje</div>
+      <div style="font-size:12px;color:#aaa;font-family:sans-serif;margin-bottom:22px">100% digital · Sem burocracia · Gestão pelo app BTG</div>
+      <div style="display:inline-block" class="cta-p">Abrir conta e contratar →</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div><div class="logo">AUTEM</div><div class="flink" style="margin-top:12px;color:#555;font-size:10px">Uma solução da <strong style="color:#666">Apent Holding</strong><br>Escritório Parceiro BTG Pactual · © 2025</div></div>
+    <div><h4>Soluções</h4><div class="flink">Investimentos</div><div class="flink">Conta Digital</div><div class="flink">Cartões</div><div class="flink">Proteção</div></div>
+    <div><h4>Empresa</h4><div class="flink">Por que Autem?</div><div class="flink">Blog</div></div>
+    <div><h4>Legal</h4><div class="flink">Privacidade</div><div class="flink">LGPD</div><div class="flink">Termos</div></div>
+  </div>
+  <div class="fdiscl">Autem Investimentos · Escritório parceiro BTG Pactual S.A. · CVM Res. 178 · São Paulo, SP · Seguros sujeitos a análise e condições do produto.</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     POR QUE AUTEM?
+══════════════════════════════════════════════════════ -->
+<div class="page" id="page-sobre">
+<div class="browser">
+  <div class="bbar"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="burl">autem.com.br/por-que-autem</div><div class="blabel">POR QUE AUTEM?</div></div>
+  <div class="siteheader">
+    <div class="logo">AUTEM</div>
+    <div class="sitenav"><div class="snlink">Home</div><div class="snlink">Soluções</div><div class="snlink on">Por que Autem?</div><div class="snlink">Blog</div></div>
+    <div class="header-actions"><div class="sitelogin">Já tenho conta</div><div class="sitecta">Abrir conta grátis →</div></div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>Page Hero</strong>Não é "sobre nós" corporativo. É resposta direta à dúvida do usuário. Tom: "antes era pra rico, agora é pra você".</div>
+    <div class="hero" style="min-height:280px;padding:48px 52px">
+      <div class="hero-content">
+        <div class="heyebrow">Nossa missão</div>
+        <div class="h1" style="font-size:24px">O que antes era pra 5% do mercado<br>agora é <em>pra você.</em></div>
+        <div class="hsub" style="margin-bottom:0">A Autem nasceu para democratizar o acesso ao mercado financeiro de qualidade — sem precisar ter muito dinheiro, muito tempo ou um assessor por trás.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S1 — Missão</strong>Storytelling direto. Linguagem humana, não corporativa. Foto real à direita (pessoa usando app — não gráfico de pizza genérico).</div>
+    <div class="inner">
+      <div class="missao-grid">
+        <div>
+          <div class="eyebrow">De onde viemos</div>
+          <div class="h2">Democratizar o que sempre foi restrito</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7;font-family:sans-serif;margin-top:12px">
+            <p>Por décadas, as melhores oportunidades de investimento foram reservadas para quem tinha patrimônio mínimo de R$ 1 milhão ou um assessor com acesso exclusivo à mesa do banco.</p><br>
+            <p>A Autem muda isso. Com tecnologia e a parceria BTG Pactual, qualquer pessoa com R$ 10 e acesso ao celular tem hoje o mesmo acesso que antes era só de grandes investidores.</p><br>
+            <p>Isso não é modismo. É o que acreditamos ser o futuro do mercado financeiro.</p>
+          </div>
+        </div>
+        <div class="blk" style="height:280px;border-radius:8px">[Foto: pessoa usando app Autem]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S2 — Valores</strong>3 pilares reais, não genéricos ("inovação", "excelência"). Cada valor resolve uma dor real do usuário de investimento.</div>
+    <div class="inner tint-bg">
+      <div class="eyebrow">O que guia a Autem</div>
+      <div class="h2">Três princípios que não abrimos mão</div>
+      <div class="sub">Enquanto o mercado vende produto, a Autem vende clareza.</div>
+      <div class="valores-grid">
+        <div class="val-card"><div class="val-icon">🔍</div><div class="val-name">Transparência total</div><div class="val-desc">Você sabe exatamente quanto paga, quanto rende e por quê. Sem letrinhas miúdas, sem taxa escondida na 3ª página.</div></div>
+        <div class="val-card"><div class="val-icon">⚙️</div><div class="val-name">Tecnologia a seu favor</div><div class="val-desc">Nossa plataforma foi construída para te guiar, não confundir. Quanto mais você usa, mais ela aprende o que você precisa.</div></div>
+        <div class="val-card"><div class="val-icon">🚫</div><div class="val-name">Zero conflito de interesse</div><div class="val-desc">Não temos produto próprio para empurrar. A prateleira é BTG Pactual — você escolhe. Nós ajudamos a escolher melhor.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S3 — Ecossistema BTG</strong>Explicação técnica da parceria em linguagem acessível. Responde: "mas como vocês são seguros?". 4 itens concretos.</div>
+    <div class="inner">
+      <div class="eyebrow">A parceria que faz diferença</div>
+      <div class="h2" style="margin-bottom:24px">Banco grande. Plataforma moderna. Você no controle.</div>
+      <div class="btgbox">
+        <div>
+          <div style="color:#fff;font-size:18px;font-weight:700;font-family:sans-serif;line-height:1.3;margin-bottom:12px">Por que a Autem escolheu o BTG Pactual</div>
+          <div style="color:#bbb;font-size:11px;font-family:sans-serif;line-height:1.65">O BTG Pactual é o maior banco de investimentos da América Latina, com mais de 35 anos de mercado e R$ 600 bilhões sob gestão. Ser um escritório parceiro BTG significa que a Autem opera dentro da estrutura regulatória mais sólida do país — com custódia, compliance e proteção de classe mundial.<br><br>Você investe como se fosse cliente direto do BTG. A diferença é que tem a experiência da Autem para guiar cada decisão.</div>
+        </div>
+        <div class="btg-items">
+          <div class="btg-item"><span style="font-size:20px">🏦</span><div class="btg-item-text"><strong>Custódia BTG Pactual</strong>Seus ativos ficam custodiados direto no banco, separados do patrimônio da Autem.</div></div>
+          <div class="btg-item"><span style="font-size:20px">🔐</span><div class="btg-item-text"><strong>FGC até R$ 250 mil</strong>Renda fixa coberta pelo Fundo Garantidor de Créditos, mesmo que o banco feche.</div></div>
+          <div class="btg-item"><span style="font-size:20px">📊</span><div class="btg-item-text"><strong>Prateleira completa BTG</strong>Acesso a toda a grade: CDB, LCI, LCA, fundos, ações e renda variável.</div></div>
+          <div class="btg-item"><span style="font-size:20px">📱</span><div class="btg-item-text"><strong>App BTG integrado</strong>Uma conta, um app — tudo em um só lugar, sem precisar de portais separados.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div><div class="logo">AUTEM</div><div class="flink" style="margin-top:12px;color:#555;font-size:10px">Apent Holding · BTG Pactual · © 2025</div></div>
+    <div><h4>Soluções</h4><div class="flink">Investimentos</div><div class="flink">Conta Digital</div><div class="flink">Cartões</div></div>
+    <div><h4>Empresa</h4><div class="flink">Por que Autem?</div><div class="flink">Blog</div></div>
+    <div><h4>Legal</h4><div class="flink">Privacidade</div><div class="flink">LGPD</div></div>
+  </div>
+  <div class="fdiscl">Autem Investimentos · Escritório parceiro BTG Pactual S.A. · CVM Res. 178 · São Paulo, SP</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     BLOG
+══════════════════════════════════════════════════════ -->
+<div class="page" id="page-blog">
+<div class="browser">
+  <div class="bbar"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="burl">autem.com.br/blog</div><div class="blabel">BLOG — Educação Financeira</div></div>
+  <div class="siteheader">
+    <div class="logo">AUTEM</div>
+    <div class="sitenav"><div class="snlink">Home</div><div class="snlink">Soluções</div><div class="snlink">Por que Autem?</div><div class="snlink on">Blog</div></div>
+    <div class="header-actions"><div class="sitelogin">Já tenho conta</div><div class="sitecta">Abrir conta grátis →</div></div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S1 — Destaque Semanal</strong>Post principal em layout horizontal. Fundo gradiente. Posiciona Autem como autoridade editorial, não só comercial.</div>
+    <div class="bloghero">
+      <div>
+        <div style="font-size:10px;color:var(--brand-accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-family:sans-serif">📌 Destaque desta semana</div>
+        <div style="font-size:20px;color:#fff;font-weight:700;font-family:sans-serif;line-height:1.35;margin-bottom:12px">Como começar a investir com R$ 100 — e por que você já devia ter começado</div>
+        <div style="font-size:11px;color:#ccc;line-height:1.6;font-family:sans-serif;margin-bottom:18px">Sabe aquela desculpa de "vou investir quando tiver mais dinheiro"? Neste artigo a gente destrói esse mito com números reais e um passo a passo.</div>
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="background:var(--brand-accent);color:#0D0E1A;padding:9px 18px;border-radius:5px;font-size:11px;font-weight:bold;font-family:sans-serif">Ler artigo →</div>
+          <div style="font-size:10px;color:#aaa;font-family:sans-serif">8 mai 2025 · 5 min leitura</div>
+        </div>
+      </div>
+      <div class="blk-dk" style="height:200px;border-radius:8px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa">[Foto principal do artigo]</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S2 — Categorias</strong>Tabs horizontais. Filtra o feed sem reload. Design limpo, funcional.</div>
+    <div class="inner" style="padding-bottom:0">
+      <div class="eyebrow">Educação financeira</div>
+      <div class="h2" style="margin-bottom:20px">Aprenda no seu ritmo</div>
+      <div class="bcat-tabs">
+        <div class="bcat-tab on">Todos</div>
+        <div class="bcat-tab">📈 Investimentos para Iniciantes</div>
+        <div class="bcat-tab">💰 Dicas de Economia</div>
+        <div class="bcat-tab">📊 Entendendo o Mercado</div>
+        <div class="bcat-tab">🛡️ Proteção e Seguros</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>S3 — Feed de Artigos</strong>Grid 3 colunas. Cards limpos: imagem, categoria, título, excerpt e metadata. Sem clutter. 6 artigos com títulos reais.</div>
+    <div class="inner">
+      <div class="blogrid">
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Iniciantes</div><div class="btitle">Como escolher entre CDB, LCI e LCA sem enlouquecer</div><div class="bexcerpt">Três letrinhas, muita confusão. A gente explica de um jeito que faz sentido.</div><div class="bmeta"><span>3 mai</span><span>4 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Mercado</div><div class="btitle">Selic em queda: o que muda no seu investimento e o que fazer</div><div class="bexcerpt">Toda vez que o Copom mexe, o mercado reage. Entenda o mecanismo.</div><div class="bmeta"><span>29 abr</span><span>6 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Economia</div><div class="btitle">Reserva de emergência: quanto você precisa ter e onde guardar</div><div class="bexcerpt">Antes de qualquer investimento, você precisa de uma base sólida.</div><div class="bmeta"><span>22 abr</span><span>5 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Iniciantes</div><div class="btitle">Tesouro Direto ou CDB? Qual rende mais pra você em 2025</div><div class="bexcerpt">Comparamos as duas opções mais populares de renda fixa com simulações reais.</div><div class="bmeta"><span>17 abr</span><span>7 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Proteção</div><div class="btitle">Previdência privada vale a pena? A resposta honesta</div><div class="bexcerpt">Sem fórmula mágica: depende do seu perfil. Mas temos os números.</div><div class="bmeta"><span>10 abr</span><span>8 min</span></div></div></div>
+        <div class="bcard"><div class="bcard-img blk"></div><div class="bcard-body"><div class="bcat">Economia</div><div class="btitle">Como guardar dinheiro sendo autônomo — sem salário fixo</div><div class="bexcerpt">Para quem tem renda variável, a estratégia de guardar dinheiro é diferente.</div><div class="bmeta"><span>5 abr</span><span>5 min</span></div></div></div>
+      </div>
+      <div style="text-align:center;margin-top:26px"><div style="display:inline-block;border:1px solid var(--border);border-radius:6px;padding:10px 28px;font-size:12px;font-family:sans-serif;color:var(--muted)">Carregar mais artigos</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="note"><strong>CTA — Newsletter</strong>Captura de e-mail no rodapé do blog. Converte leitores em leads. Promessa clara, sem spam.</div>
+    <div class="inner dark-bg" style="text-align:center;padding:48px 52px">
+      <div class="eyebrow eyebrow-inv">Newsletter Autem</div>
+      <div class="h2 h2-inv" style="margin-bottom:8px">Educação financeira toda semana na sua caixa de entrada</div>
+      <div style="font-size:12px;color:#aaa;font-family:sans-serif;margin-bottom:24px">Conteúdo original. Sem spam. Você cancela quando quiser.</div>
+      <div style="display:flex;gap:10px;justify-content:center;max-width:420px;margin:0 auto">
+        <div style="flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:10px 14px;color:#aaa;font-size:12px;font-family:sans-serif">seu@email.com</div>
+        <div style="background:var(--brand-accent);color:#0D0E1A;padding:10px 20px;border-radius:6px;font-size:12px;font-weight:bold;font-family:sans-serif;white-space:nowrap">Quero receber</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div><div class="logo">AUTEM</div><div class="flink" style="margin-top:12px;color:#555;font-size:10px">Apent Holding · BTG Pactual · © 2025</div></div>
+    <div><h4>Soluções</h4><div class="flink">Investimentos</div><div class="flink">Conta Digital</div><div class="flink">Cartões</div></div>
+    <div><h4>Empresa</h4><div class="flink">Por que Autem?</div><div class="flink">Blog</div></div>
+    <div><h4>Legal</h4><div class="flink">Privacidade</div><div class="flink">LGPD</div></div>
+  </div>
+  <div class="fdiscl">Autem Investimentos · Escritório parceiro BTG Pactual S.A. · CVM Res. 178 · São Paulo, SP</div>
+</div>
+</div>
+
+</div><!-- /canvas -->
+
+<script>
+function goPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showProd(id, el) {
+  document.querySelectorAll('.prod-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('on'));
+  document.getElementById('prod-' + id).classList.add('active');
+  el.classList.add('on');
+  window.scrollTo(0, 120);
+}
+</script>
+</body>
+</html>
