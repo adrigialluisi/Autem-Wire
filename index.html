@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wireframe v5 · Autem Investimentos</title>
+<title>Wireframe v3 · Autem Investimentos</title>
 
 <!--
   ══════════════════════════════════════════════════════════════
@@ -733,6 +733,183 @@ img { display: block; max-width: 100%; }
 }
 .blog-cat-btn.active, .blog-cat-btn:hover { background: var(--c-purple-dark); border-color: var(--c-purple-dark); color: #fff; }
 .blog-all-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+
+
+/* ══════════════════════════════════════════
+   NÚMEROS / AUTORIDADE
+══════════════════════════════════════════ */
+.numeros {
+  padding: 72px 0;
+  background: var(--c-purple-dark);
+}
+.numeros-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+}
+.numero-item {
+  text-align: center; padding: 32px 24px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.numero-item:last-child { border-right: none; }
+.numero-val {
+  font-size: clamp(36px,3.5vw,52px); font-weight: 900;
+  color: var(--c-green); letter-spacing: -2px; line-height: 1;
+  margin-bottom: 8px;
+}
+.numero-label {
+  font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; line-height: 1.4;
+}
+.numeros-premio {
+  display: flex; align-items: center; justify-content: center; gap: 32px;
+  margin-top: 48px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  flex-wrap: wrap;
+}
+.premio-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 14px 22px;
+}
+.premio-badge-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(69,235,203,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-green);
+}
+.premio-badge-text { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 600; }
+.premio-badge-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+/* ══════════════════════════════════════════
+   BANKING SECTION
+══════════════════════════════════════════ */
+.banking-section { padding: 104px 0; background: var(--bg-white); }
+.banking-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.banking-cards-mock { position: relative; height: 320px; }
+.card-mock {
+  position: absolute;
+  width: 280px; height: 172px;
+  border-radius: 18px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 24px; font-weight: 700; color: #fff;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+}
+.card-mock-1 { background: linear-gradient(135deg, var(--c-purple-dark) 0%, var(--c-purple-mid) 100%); top: 0; left: 0; z-index: 2; }
+.card-mock-2 { background: linear-gradient(135deg, #1a0d4a 0%, var(--c-purple-dark) 100%); top: 40px; left: 60px; z-index: 1; opacity: 0.7; }
+.card-mock-3 { background: linear-gradient(135deg, var(--c-purple-mid) 0%, #5a6fe0 100%); top: 80px; left: 120px; z-index: 0; opacity: 0.4; }
+.card-mock-logo { font-size: 14px; font-weight: 900; letter-spacing: -0.3px; }
+.card-mock-number { font-size: 13px; letter-spacing: 2px; opacity: 0.7; }
+.card-mock-btg { font-size: 10px; text-align: right; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
+.banking-features { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+.banking-feature { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-primary); }
+.banking-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-green); flex-shrink: 0; }
+
+/* ══════════════════════════════════════════
+   COMO FUNCIONA — VISUAL
+══════════════════════════════════════════ */
+.steps-visual {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 64px;
+}
+.step-visual {
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px 28px; text-align: center;
+  transition: all .22s;
+}
+.step-visual:hover { box-shadow: 0 20px 56px rgba(57,30,122,0.1); transform: translateY(-4px); }
+.step-visual-mock {
+  height: 180px; border-radius: 14px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-visual-mock-1 { background: linear-gradient(160deg, var(--c-purple-dark), var(--c-purple-mid)); }
+.step-visual-mock-2 { background: linear-gradient(160deg, var(--c-purple-mid), #5a6fe0); }
+.step-visual-mock-3 { background: linear-gradient(160deg, #1a0d4a, var(--c-purple-dark)); }
+.step-visual-num {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--c-purple-mid); margin-bottom: 8px;
+}
+.step-visual-title { font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.3px; }
+.step-visual-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   AUTEM NA MÍDIA
+══════════════════════════════════════════ */
+.midia-section { padding: 104px 0; background: var(--bg-white); }
+.midia-inner {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start;
+}
+.midia-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.midia-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; transition: all .2s;
+}
+.midia-card:hover { box-shadow: 0 8px 32px rgba(57,30,122,0.1); transform: translateY(-2px); }
+.midia-card-source {
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--c-purple-mid); margin-bottom: 10px;
+}
+.midia-card-title { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.4; margin-bottom: 8px; }
+.midia-card-date { font-size: 11px; color: var(--text-muted); }
+
+/* ══════════════════════════════════════════
+   FALE CONOSCO MODAL
+══════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff; border-radius: 24px;
+  width: 100%; max-width: 480px; margin: 24px;
+  padding: 40px 36px; position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+}
+.modal-close {
+  position: absolute; top: 18px; right: 20px;
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--bg-surface); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 18px; font-weight: 300;
+  transition: all .2s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-title { font-size: 24px; font-weight: 900; color: var(--text-primary); margin-bottom: 6px; letter-spacing: -0.5px; }
+.modal-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.5; }
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-input, .form-select {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1.5px solid var(--border); font-family: var(--font-primary);
+  font-size: 14px; color: var(--text-primary); background: #fff;
+  transition: border-color .2s; outline: none;
+}
+.form-input:focus, .form-select:focus { border-color: var(--c-purple-mid); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn-form-submit {
+  width: 100%; background: var(--c-purple-dark); color: #fff;
+  font-size: 15px; font-weight: 800; padding: 16px;
+  border-radius: 12px; border: none; cursor: pointer;
+  transition: all .2s; margin-top: 8px; font-family: var(--font-primary);
+}
+.btn-form-submit:hover { background: var(--c-purple-mid); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   WHATSAPP FLUTUANTE
+══════════════════════════════════════════ */
+.whatsapp-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 1500;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  cursor: pointer; transition: all .2s; border: none;
+}
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+
+/* ── MODAL JÁ TENHO CONTA ── */
+#modalJaTenhoConta .modal-title { color: var(--c-purple-dark); }
 </style>
 </head>
 <body>
@@ -754,7 +931,8 @@ img { display: block; max-width: 100%; }
       <li><a href="#" onclick="return showPage('blog')" id="nav-blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="btn-ghost">Já tenho conta</button>
+      <button class="btn-ghost" onclick="openFaleConosco(event)">Fale conosco</button>
+      <button class="btn-ghost" onclick="openJaTenhoConta()">Já tenho conta</button>
       <button class="btn-primary">Abrir conta</button>
     </div>
   </div>
@@ -775,10 +953,6 @@ img { display: block; max-width: 100%; }
         <p class="hero-sub">Acesso à plataforma completa do BTG Pactual com o cuidado e a proximidade de quem realmente entende o seu momento financeiro.</p>
         <div class="hero-cta-row">
           <button class="btn-hero">Abra sua conta</button>
-          <a href="#" class="hero-link">
-            Saiba mais
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
         </div>
       </div>
       <div class="hero-visual">
@@ -786,6 +960,59 @@ img { display: block; max-width: 100%; }
           <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
         </svg>
         <span>Foto: pessoa confiante com celular</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS E AUTORIDADE -->
+  <section class="numeros">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="numero-item">
+          <div class="numero-val">R$2B+</div>
+          <div class="numero-label">Ativos sob assessoria</div>
+        </div>
+        <div class="numero-item">
+          <div class="numero-val">1.200+</div>
+          <div class="numero-label">Clientes ativos</div>
+        </div>
+        <div class="numero-item">
+          <div class="numero-val">30+</div>
+          <div class="numero-label">Especialistas no time</div>
+        </div>
+        <div class="numero-item">
+          <div class="numero-val">5 anos</div>
+          <div class="numero-label">De mercado e crescimento</div>
+        </div>
+      </div>
+      <div class="numeros-premio">
+        <div class="premio-badge">
+          <div class="premio-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <div class="premio-badge-text">Top Escritório BTG</div>
+            <div class="premio-badge-sub">Prêmio 2024</div>
+          </div>
+        </div>
+        <div class="premio-badge">
+          <div class="premio-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div>
+            <div class="premio-badge-text">Certificação CVM</div>
+            <div class="premio-badge-sub">Resolução 178</div>
+          </div>
+        </div>
+        <div class="premio-badge">
+          <div class="premio-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="premio-badge-text">Parceiro BTG Pactual</div>
+            <div class="premio-badge-sub">Maior banco de inv. da AL</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -861,11 +1088,11 @@ img { display: block; max-width: 100%; }
             <span class="product-tab-label">Renda Variável</span>
           </button>
 
-          <button class="product-tab" onclick="selectTab(this,'tab-mc')">
+          <button class="product-tab" onclick="selectTab(this,'tab-fiis')">
             <div class="product-tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <span class="product-tab-label">Mercado de Capitais</span>
+            <span class="product-tab-label">FIIs e Alternativos</span>
           </button>
 
           <button class="product-tab" onclick="selectTab(this,'tab-fi')">
@@ -882,11 +1109,11 @@ img { display: block; max-width: 100%; }
             <span class="product-tab-label">Previdência Privada</span>
           </button>
 
-          <button class="product-tab" onclick="selectTab(this,'tab-alt')">
+          <button class="product-tab" onclick="selectTab(this,'tab-cripto')">
             <div class="product-tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
             </div>
-            <span class="product-tab-label">Ativos Alternativos e Inovações</span>
+            <span class="product-tab-label">Criptomoedas</span>
           </button>
 
           <button class="product-tab" onclick="selectTab(this,'tab-bk')">
@@ -919,6 +1146,11 @@ img { display: block; max-width: 100%; }
                 <div class="sub-product-tags"><span class="tag">CDB</span><span class="tag">LCI</span><span class="tag">LCA</span></div>
                 <p class="sub-product-desc">Rentabilidade competitiva com proteção do FGC de até R$250 mil por CPF por instituição. Isenção de IR em LCI e LCA.</p>
               </div>
+              <div class="sub-product">
+                <div class="sub-product-title">Crédito Privado</div>
+                <div class="sub-product-tags"><span class="tag">CRI</span><span class="tag">CRA</span><span class="tag">Debêntures</span><span class="tag">FIDC</span></div>
+                <p class="sub-product-desc">Rentabilidade acima da renda fixa tradicional com diversificação de emissores. Muitos com isenção de IR para pessoa física.</p>
+              </div>
             </div>
           </div>
 
@@ -940,26 +1172,31 @@ img { display: block; max-width: 100%; }
                 <div class="sub-product-tags"><span class="tag">Derivativos</span><span class="tag">Opções</span></div>
                 <p class="sub-product-desc">Estratégias avançadas com derivativos para hedging, proteção de carteira e operações alavancadas no mercado secundário.</p>
               </div>
-            </div>
-          </div>
-
-          <!-- MERCADO DE CAPITAIS -->
-          <div class="product-panel" id="tab-mc">
-            <div class="panel-header">
-              <div class="panel-category">Categoria 03</div>
-              <div class="panel-title">Mercado de Capitais</div>
-              <p class="panel-desc">Ecossistema voltado para a originação de novos papéis e financiamento direto de empresas — coordenado pelo BTG.</p>
-            </div>
-            <div class="sub-products-grid">
               <div class="sub-product">
                 <div class="sub-product-title">Ofertas Públicas</div>
                 <div class="sub-product-tags"><span class="tag">IPO</span><span class="tag">Follow-on</span></div>
-                <p class="sub-product-desc">Participação em ofertas coordenadas pelo BTG Pactual em Renda Fixa ou Variável. Acesso privilegiado como cliente Autem.</p>
+                <p class="sub-product-desc">Participação em ofertas coordenadas pelo BTG Pactual. Acesso privilegiado a IPOs e follow-ons como cliente Autem.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FIIs E ALTERNATIVOS (substituiu Mercado de Capitais) -->
+          <div class="product-panel" id="tab-fiis">
+            <div class="panel-header">
+              <div class="panel-category">Categoria 03</div>
+              <div class="panel-title">FIIs e Alternativos</div>
+              <p class="panel-desc">Fundos imobiliários e de infraestrutura negociados em bolsa, com distribuição de proventos mensais e acesso ao mercado real.</p>
+            </div>
+            <div class="sub-products-grid">
+              <div class="sub-product">
+                <div class="sub-product-title">FII — Fundos Imobiliários</div>
+                <div class="sub-product-tags"><span class="tag">FII</span><span class="tag">Lajes</span><span class="tag">Logística</span></div>
+                <p class="sub-product-desc">Exposição ao mercado imobiliário com liquidez de bolsa. Distribuição mensal de rendimentos, isentos de IR para pessoa física.</p>
               </div>
               <div class="sub-product">
-                <div class="sub-product-title">Crédito Privado</div>
-                <div class="sub-product-tags"><span class="tag">CRI</span><span class="tag">CRA</span><span class="tag">Debêntures</span><span class="tag">FIDC</span></div>
-                <p class="sub-product-desc">Rentabilidade acima da renda fixa tradicional com diversificação de emissores. Muitos com isenção de IR para pessoa física.</p>
+                <div class="sub-product-title">FIAGRO e FI-INFRA</div>
+                <div class="sub-product-tags"><span class="tag">FIAGRO</span><span class="tag">FI-INFRA</span><span class="tag">FIP-IE</span></div>
+                <p class="sub-product-desc">Fundos focados em agronegócio e infraestrutura. Acesso a setores estratégicos da economia real com benefício fiscal.</p>
               </div>
             </div>
           </div>
@@ -1016,16 +1253,16 @@ img { display: block; max-width: 100%; }
             </div>
           </div>
 
-          <!-- ALTERNATIVOS -->
-          <div class="product-panel" id="tab-alt">
+          <!-- CRIPTOMOEDAS (substituiu Ativos Alternativos e Inovações) -->
+          <div class="product-panel" id="tab-cripto">
             <div class="panel-header">
               <div class="panel-category">Categoria 06</div>
-              <div class="panel-title">Ativos Alternativos e Inovações</div>
-              <p class="panel-desc">Ativos digitais descentralizados e produtos baseados em teses de probabilidade de eventos futuros.</p>
+              <div class="panel-title">Criptomoedas</div>
+              <p class="panel-desc">Ativos digitais descentralizados e produtos baseados em teses de probabilidade de eventos futuros — via ecossistema BTG.</p>
             </div>
             <div class="sub-products-grid">
               <div class="sub-product">
-                <div class="sub-product-title">Cripto Moedas</div>
+                <div class="sub-product-title">Bitcoin, Ethereum e outros</div>
                 <div class="sub-product-tags"><span class="tag">Bitcoin</span><span class="tag">Ethereum</span><span class="tag">Regulado</span></div>
                 <p class="sub-product-desc">Exposição a ativos digitais com custódia BTG. Acesso regulado e seguro ao mercado cripto, integrado à carteira de investimentos.</p>
               </div>
@@ -1069,6 +1306,51 @@ img { display: block; max-width: 100%; }
   </section>
 
 
+  <!-- BANKING -->
+  <section class="banking-section">
+    <div class="container">
+      <div class="banking-inner">
+        <div>
+          <span class="section-eyebrow">Banking BTG</span>
+          <div class="section-title">Banco completo na palma da mão</div>
+          <p class="section-sub">Conta digital, cartões com principalidade e crédito pessoal no ecossistema BTG — tudo integrado à sua carteira de investimentos.</p>
+          <div class="banking-features">
+            <div class="banking-feature"><div class="banking-feature-dot"></div>Aplicação automática do saldo parado</div>
+            <div class="banking-feature"><div class="banking-feature-dot"></div>Cartão de crédito com programa de milhas</div>
+            <div class="banking-feature"><div class="banking-feature-dot"></div>Crédito pessoal com garantia de investimentos</div>
+            <div class="banking-feature"><div class="banking-feature-dot"></div>TED e PIX sem custo</div>
+            <div class="banking-feature"><div class="banking-feature-dot"></div>Débito automático e pagamentos integrados</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <div class="banking-cards-mock">
+            <div class="card-mock card-mock-3">
+              <div class="card-mock-logo">BTG Pactual</div>
+              <div>
+                <div class="card-mock-number">•••• •••• •••• 3344</div>
+                <div class="card-mock-btg">powered by BTG</div>
+              </div>
+            </div>
+            <div class="card-mock card-mock-2">
+              <div class="card-mock-logo">BTG Pactual</div>
+              <div>
+                <div class="card-mock-number">•••• •••• •••• 2233</div>
+                <div class="card-mock-btg">powered by BTG</div>
+              </div>
+            </div>
+            <div class="card-mock card-mock-1">
+              <div class="card-mock-logo">BTG Pactual</div>
+              <div>
+                <div class="card-mock-number">•••• •••• •••• 1122</div>
+                <div class="card-mock-btg">powered by BTG</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- COMO FUNCIONA -->
   <section class="como-funciona">
     <div class="container">
@@ -1077,26 +1359,110 @@ img { display: block; max-width: 100%; }
         <div class="section-title">Como funciona</div>
         <p class="section-sub">Abra sua conta e tenha na palma da mão os melhores produtos de investimento do mercado.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div class="step-title">Abra sua conta</div>
-          <p class="step-desc">Processo 100% digital, direto pela plataforma BTG. Menos de 10 minutos e você já tem acesso a todo o ecossistema.</p>
+      <div class="steps-visual">
+
+        <div class="step-visual">
+          <div class="step-visual-mock step-visual-mock-1">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:80px;height:120px;border-radius:10px;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);display:flex;flex-direction:column;padding:10px;gap:5px;">
+                <div style="height:6px;border-radius:3px;background:rgba(255,255,255,0.3);width:80%;"></div>
+                <div style="height:6px;border-radius:3px;background:rgba(255,255,255,0.2);width:60%;"></div>
+                <div style="height:22px;background:rgba(69,235,203,0.25);border-radius:5px;margin-top:4px;display:flex;align-items:center;justify-content:center;">
+                  <span style="font-size:8px;color:var(--c-green);font-weight:800;">Abrir conta</span>
+                </div>
+                <div style="height:6px;border-radius:3px;background:rgba(255,255,255,0.15);width:40%;margin-top:4px;"></div>
+              </div>
+              <div style="width:24px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;"></div>
+            </div>
+          </div>
+          <div class="step-visual-num">01 — Mobile</div>
+          <div class="step-visual-title">Abra sua conta</div>
+          <p class="step-visual-desc">Processo 100% digital pelo app BTG. Menos de 10 minutos e você já tem acesso ao ecossistema completo.</p>
         </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div class="step-title">Explore os produtos</div>
-          <p class="step-desc">Acesso à carteira completa do BTG — do mais conservador ao mais sofisticado — com suporte dedicado da equipe Autem.</p>
+
+        <div class="step-visual">
+          <div class="step-visual-mock step-visual-mock-2">
+            <div style="width:140px;">
+              <div style="background:rgba(255,255,255,0.07);border-radius:8px;padding:10px;">
+                <div style="display:flex;gap:4px;margin-bottom:6px;">
+                  <div style="width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.15);"></div>
+                  <div style="flex:1;height:14px;border-radius:3px;background:rgba(255,255,255,0.1);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;">
+                  <div style="background:rgba(69,235,203,0.15);border-radius:3px;height:28px;"></div>
+                  <div style="background:rgba(255,255,255,0.08);border-radius:3px;height:28px;"></div>
+                  <div style="background:rgba(255,255,255,0.08);border-radius:3px;height:28px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="step-visual-num">02 — Desktop & Mobile</div>
+          <div class="step-visual-title">Explore os produtos</div>
+          <p class="step-visual-desc">Toda a carteira BTG — do conservador ao sofisticado — com suporte dedicado da equipe Autem.</p>
         </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div class="step-title">Acompanhe e cresça</div>
-          <p class="step-desc">Monitore sua carteira em tempo real, receba análises e conte com nossa equipe para evoluir sua estratégia.</p>
+
+        <div class="step-visual">
+          <div class="step-visual-mock step-visual-mock-3">
+            <div style="width:160px;">
+              <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:12px;">
+                <div style="font-size:8px;color:rgba(255,255,255,0.4);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;">Carteira total</div>
+                <div style="font-size:18px;font-weight:900;color:var(--c-green);letter-spacing:-0.5px;margin-bottom:8px;">R$ 248.320</div>
+                <div style="display:flex;gap:4px;margin-bottom:4px;">
+                  <div style="flex:3;height:8px;background:var(--c-green);border-radius:2px;opacity:0.7;"></div>
+                  <div style="flex:2;height:8px;background:rgba(255,255,255,0.2);border-radius:2px;"></div>
+                  <div style="flex:1;height:8px;background:rgba(255,255,255,0.12);border-radius:2px;"></div>
+                </div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.3);">Renda Fixa · Variável · Fundos</div>
+              </div>
+            </div>
+          </div>
+          <div class="step-visual-num">03 — Dashboard</div>
+          <div class="step-visual-title">Acompanhe e cresça</div>
+          <p class="step-visual-desc">Monitore sua carteira em tempo real, receba análises e evolua sua estratégia com nossa equipe.</p>
         </div>
+
       </div>
     </div>
   </section>
 
+
+  <!-- AUTEM NA MÍDIA -->
+  <section class="midia-section">
+    <div class="container">
+      <div class="midia-inner">
+        <div>
+          <span class="section-eyebrow">Imprensa</span>
+          <div class="section-title">Autem na mídia</div>
+          <p class="section-sub">Nossa história e visão sobre o mercado de investimentos nos principais veículos do país.</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:700;color:var(--c-purple-dark);border:1.5px solid var(--border);padding:11px 20px;border-radius:9px;transition:all .2s;">
+            Ver todas as matérias →
+          </a>
+        </div>
+        <div class="midia-cards">
+          <div class="midia-card">
+            <div class="midia-card-source">Infomoney</div>
+            <div class="midia-card-title">Autem se consolida como referência em assessoria de investimentos no BTG</div>
+            <div class="midia-card-date">Jun 2024</div>
+          </div>
+          <div class="midia-card">
+            <div class="midia-card-source">Valor Econômico</div>
+            <div class="midia-card-title">Escritórios independentes ganham espaço no segmento de alta renda</div>
+            <div class="midia-card-date">Mai 2024</div>
+          </div>
+          <div class="midia-card">
+            <div class="midia-card-source">Exame Invest</div>
+            <div class="midia-card-title">Como a assessoria personalizada está transformando a relação dos brasileiros com investimentos</div>
+            <div class="midia-card-date">Abr 2024</div>
+          </div>
+          <div class="midia-card">
+            <div class="midia-card-source">Broadcast</div>
+            <div class="midia-card-title">Autem registra crescimento de 40% em AuC no primeiro semestre</div>
+            <div class="midia-card-date">Mar 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CUSTÓDIA -->
   <section class="custodia">
@@ -1320,11 +1686,7 @@ img { display: block; max-width: 100%; }
           <h3>Parceiros do BTG Pactual</h3>
           <p>Como escritório parceiro credenciado, a Autem oferece acesso completo à plataforma e ao portfólio do BTG — o maior banco de investimentos da América Latina.</p>
         </div>
-        <div class="qs-btg-stats">
-          <div class="qs-stat"><div class="qs-stat-val">R$1,7T</div><div class="qs-stat-label">Ativos sob custódia BTG</div></div>
-          <div class="qs-stat"><div class="qs-stat-val">#1</div><div class="qs-stat-label">Banco de inv. da América Latina</div></div>
-          <div class="qs-stat"><div class="qs-stat-val">CVM</div><div class="qs-stat-label">Registrada e regulada</div></div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -1353,47 +1715,11 @@ img { display: block; max-width: 100%; }
     </div>
   </section>
 
-  <section class="time-section">
-    <div class="container">
-      <div class="time-section-label">Liderança</div>
-      <div class="time-section-title">Diretoria</div>
-      <div class="time-grid">
-        <div class="time-card">
-          <div class="time-avatar"><div class="time-avatar-initials">SG</div></div>
-          <div class="time-card-body">
-            <div class="time-card-name">Sergio Gaspar</div>
-            <div class="time-card-role">CEO & Fundador</div>
-            <p class="time-card-bio">Fundou a Autem com a missão de democratizar o acesso a investimentos de qualidade. Trajetória consolidada no mercado financeiro.</p>
-            <a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-          </div>
-        </div>
-        <div class="time-card">
-          <div class="time-avatar"><div class="time-avatar-initials">D2</div></div>
-          <div class="time-card-body">
-            <div class="time-card-name">[ Diretor 2 ]</div>
-            <div class="time-card-role">Diretor de Operações</div>
-            <p class="time-card-bio">Responsável pela excelência operacional e pela jornada do cliente desde a abertura de conta até o acompanhamento da carteira.</p>
-            <a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-          </div>
-        </div>
-        <div class="time-card">
-          <div class="time-avatar"><div class="time-avatar-initials">D3</div></div>
-          <div class="time-card-body">
-            <div class="time-card-name">[ Diretor 3 ]</div>
-            <div class="time-card-role">Diretor Comercial</div>
-            <p class="time-card-bio">Lidera a estratégia de crescimento e relacionamento com clientes, garantindo que cada nova conta tenha a melhor experiência.</p>
-            <a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="time-section bg-surface">
     <div class="container">
       <div class="time-section-label">Especialistas</div>
       <div class="time-section-title">Assessores</div>
-      <div class="time-grid">
+      <div class="time-grid" style="grid-template-columns:repeat(3,1fr);">
         <div class="time-card">
           <div class="time-avatar"><div class="time-avatar-initials">A1</div></div>
           <div class="time-card-body"><div class="time-card-name">[ Assessor 1 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Especializado em renda fixa e estratégias de preservação de capital para clientes com perfil conservador a moderado.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
@@ -1404,7 +1730,43 @@ img { display: block; max-width: 100%; }
         </div>
         <div class="time-card">
           <div class="time-avatar"><div class="time-avatar-initials">A3</div></div>
-          <div class="time-card-body"><div class="time-card-name">[ Assessor 3 ]</div><div class="time-card-role">Assessora de Investimentos</div><p class="time-card-bio">Especialista em previdência privada, planejamento sucessório e soluções para proteção patrimonial.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 3 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Especialista em previdência privada, planejamento sucessório e soluções para proteção patrimonial.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A4</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 4 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Atua com clientes de alta renda, estruturando carteiras diversificadas entre produtos de crédito e bolsa.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A5</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 5 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Experiente em fundos multimercado e produtos alternativos para perfis arrojados.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A6</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 6 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Especialista em atendimento a investidores iniciantes, com foco em educação financeira e planejamento.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A7</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 7 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Atuação voltada a FIIs, infraestrutura e produtos listados em bolsa.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A8</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 8 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Especializado em soluções de crédito privado, CRI, CRA e debêntures incentivadas.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A9</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 9 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Foco em criptomoedas, ativos digitais e produtos de inovação financeira.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A10</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 10 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Expertise em derivativos, estruturas protegidas e operações no mercado de opções.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A11</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 11 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Atende empresários e profissionais liberais com foco em gestão integrada de patrimônio.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
+        </div>
+        <div class="time-card">
+          <div class="time-avatar"><div class="time-avatar-initials">A12</div></div>
+          <div class="time-card-body"><div class="time-card-name">[ Assessor 12 ]</div><div class="time-card-role">Assessor de Investimentos</div><p class="time-card-bio">Especializado em clientes internacionais e BDRs, com visão global de alocação.</p><a href="#" class="time-card-linkedin"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a></div>
         </div>
       </div>
     </div>
@@ -1482,6 +1844,101 @@ img { display: block; max-width: 100%; }
 </div>
 
 
+<!-- WHATSAPP FLUTUANTE -->
+<button class="whatsapp-float" title="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+  </svg>
+</button>
+
+
+<!-- MODAL JÁ TENHO CONTA -->
+<div class="modal-overlay" id="modalJaTenhoConta">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeJaTenhoConta()">×</button>
+    <div class="modal-title">Já sou cliente BTG</div>
+    <p class="modal-sub">Preencha abaixo e um assessor Autem entrará em contato para transferir sua assessoria.</p>
+    <form onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nome completo</label>
+          <input class="form-input" type="text" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input class="form-input" type="email" placeholder="seu@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input class="form-input" type="tel" placeholder="(11) 99999-9999">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Patrimônio aproximado</label>
+          <select class="form-select">
+            <option value="">Selecione</option>
+            <option>Até R$ 100 mil</option>
+            <option>R$ 100 mil – R$ 500 mil</option>
+            <option>R$ 500 mil – R$ 1 milhão</option>
+            <option>Acima de R$ 1 milhão</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Assessor atual (opcional)</label>
+        <input class="form-input" type="text" placeholder="Nome do seu assessor atual">
+      </div>
+      <button class="btn-form-submit" type="submit" onclick="closeJaTenhoConta()">Quero migrar para a Autem →</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL FALE CONOSCO -->
+<div class="modal-overlay" id="modalFaleConosco">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeFaleConosco()">×</button>
+    <div class="modal-title">Fale conosco</div>
+    <p class="modal-sub">Preencha abaixo e um especialista Autem entrará em contato com você.</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-input" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Telefone</label>
+        <input type="text" class="form-input" placeholder="(11) 99999-9999">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">E-mail</label>
+      <input type="email" class="form-input" placeholder="seu@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Você é</label>
+      <select class="form-select">
+        <option value="">Selecione seu perfil...</option>
+        <option>Pessoa Física — Investidor iniciante</option>
+        <option>Pessoa Física — Já invisto em outros bancos</option>
+        <option>Pessoa Física — Investidor qualificado</option>
+        <option>Pessoa Jurídica — Empresa</option>
+        <option>Assessor — Quero me juntar ao time</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Patrimônio aproximado</label>
+      <select class="form-select">
+        <option value="">Selecione uma faixa...</option>
+        <option>Até R$ 50 mil</option>
+        <option>R$ 50 mil a R$ 300 mil</option>
+        <option>R$ 300 mil a R$ 1 milhão</option>
+        <option>Acima de R$ 1 milhão</option>
+      </select>
+    </div>
+    <button class="btn-form-submit">Quero ser contatado →</button>
+  </div>
+</div>
+
 <script>
 // ─── NAVEGAÇÃO ───────────────────────────────
 function showPage(id) {
@@ -1493,6 +1950,30 @@ function showPage(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return false;
 }
+
+// ─── FALE CONOSCO ────────────────────────────
+function openFaleConosco(e) {
+  if (e) e.preventDefault();
+  document.getElementById('modalFaleConosco').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFaleConosco() {
+  document.getElementById('modalFaleConosco').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openJaTenhoConta() {
+  document.getElementById('modalJaTenhoConta').classList.add('open');
+}
+function closeJaTenhoConta() {
+  document.getElementById('modalJaTenhoConta').classList.remove('open');
+}
+document.getElementById('modalJaTenhoConta').addEventListener('click', function(e) {
+  if (e.target === this) closeJaTenhoConta();
+});
+
+document.getElementById('modalFaleConosco').addEventListener('click', function(e) {
+  if (e.target === this) closeFaleConosco();
+});
 
 // ─── TABS DE PRODUTO ──────────────────────────
 function selectTab(btn, panelId) {
