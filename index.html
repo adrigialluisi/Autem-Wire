@@ -783,27 +783,54 @@ img { display: block; max-width: 100%; }
    BANKING SECTION
 ══════════════════════════════════════════ */
 .banking-section { padding: 104px 0; background: var(--bg-white); }
-.banking-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+/* Abas de navegação banking */
+.banking-tabs-nav {
+  display: flex; gap: 0; margin-top: 40px; margin-bottom: 48px;
+  border-bottom: 2px solid var(--border);
 }
-.banking-cards-mock { position: relative; height: 320px; }
-.card-mock {
-  position: absolute;
-  width: 280px; height: 172px;
-  border-radius: 18px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 24px; font-weight: 700; color: #fff;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+.banking-tab-btn {
+  background: none; border: none; padding: 14px 28px;
+  font-size: 15px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; position: relative; transition: color .2s;
+  font-family: var(--font-primary); letter-spacing: -0.1px;
 }
-.card-mock-1 { background: linear-gradient(135deg, var(--c-purple-dark) 0%, var(--c-purple-mid) 100%); top: 0; left: 0; z-index: 2; }
-.card-mock-2 { background: linear-gradient(135deg, #1a0d4a 0%, var(--c-purple-dark) 100%); top: 40px; left: 60px; z-index: 1; opacity: 0.7; }
-.card-mock-3 { background: linear-gradient(135deg, var(--c-purple-mid) 0%, #5a6fe0 100%); top: 80px; left: 120px; z-index: 0; opacity: 0.4; }
-.card-mock-logo { font-size: 14px; font-weight: 900; letter-spacing: -0.3px; }
-.card-mock-number { font-size: 13px; letter-spacing: 2px; opacity: 0.7; }
-.card-mock-btg { font-size: 10px; text-align: right; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
-.banking-features { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
-.banking-feature { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-primary); }
-.banking-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-green); flex-shrink: 0; }
+.banking-tab-btn::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px;
+  background: var(--c-purple-dark); transform: scaleX(0); transition: transform .2s;
+}
+.banking-tab-btn.active { color: var(--c-purple-dark); }
+.banking-tab-btn.active::after { transform: scaleX(1); }
+.banking-tab-btn:hover { color: var(--c-purple-dark); }
+.banking-tab-panel { display: none; }
+.banking-tab-panel.active { display: block; }
+/* Grid de produtos banking */
+.banking-products-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.banking-prod-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 24px; transition: all .2s;
+}
+.banking-prod-card:hover {
+  border-color: var(--c-purple-mid);
+  box-shadow: 0 12px 40px rgba(57,30,122,0.08);
+  transform: translateY(-3px);
+}
+.banking-prod-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--c-purple-dark), var(--c-purple-mid));
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px; color: #fff;
+}
+.banking-prod-cat {
+  font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--c-purple-mid); margin-bottom: 6px;
+}
+.banking-prod-title {
+  font-size: 16px; font-weight: 800; color: var(--text-primary);
+  letter-spacing: -0.3px; margin-bottom: 8px;
+}
+.banking-prod-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
 
 /* ══════════════════════════════════════════
    COMO FUNCIONA — VISUAL
@@ -836,7 +863,7 @@ img { display: block; max-width: 100%; }
 ══════════════════════════════════════════ */
 .midia-section { padding: 104px 0; background: var(--bg-white); }
 .midia-inner {
-  display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: start;
 }
 .midia-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .midia-card {
@@ -1116,12 +1143,6 @@ img { display: block; max-width: 100%; }
             <span class="product-tab-label">Criptomoedas</span>
           </button>
 
-          <button class="product-tab" onclick="selectTab(this,'tab-bk')">
-            <div class="product-tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <span class="product-tab-label">Banking e Gestão de Caixa</span>
-          </button>
 
         </div><!-- /product-tabs -->
 
@@ -1274,32 +1295,6 @@ img { display: block; max-width: 100%; }
             </div>
           </div>
 
-          <!-- BANKING -->
-          <div class="product-panel" id="tab-bk">
-            <div class="panel-header">
-              <div class="panel-category">Categoria 07</div>
-              <div class="panel-title">Soluções de Banking e Gestão de Caixa</div>
-              <p class="panel-desc">Ecossistema bancário completo integrado à plataforma BTG — do caixa ao crédito.</p>
-            </div>
-            <div class="sub-products-grid">
-              <div class="sub-product">
-                <div class="sub-product-title">Gestão de Caixa</div>
-                <div class="sub-product-tags"><span class="tag">Aplicação automática</span><span class="tag">Proventos</span></div>
-                <p class="sub-product-desc">Saldo parado em conta aplicado automaticamente. Rentabilidade sobre o caixa sem que você precise fazer nada.</p>
-              </div>
-              <div class="sub-product">
-                <div class="sub-product-title">Produtos de Banking</div>
-                <div class="sub-product-tags"><span class="tag">Cartões</span><span class="tag">Seguros</span><span class="tag">Crédito</span></div>
-                <p class="sub-product-desc">Cartões com principalidade no BTG, seguros de vida e patrimonial, e crédito pessoal dentro do ecossistema.</p>
-              </div>
-              <div class="sub-product">
-                <div class="sub-product-title">Dinâmicas de Cartões</div>
-                <div class="sub-product-tags"><span class="tag">Milhas</span><span class="tag">Isenção</span><span class="tag">Cashback</span></div>
-                <p class="sub-product-desc">Programas de milhas, campanhas de isenção de anuidade e benefícios de principalidade. O melhor do seu dinheiro trabalhando.</p>
-              </div>
-            </div>
-          </div>
-
         </div><!-- /product-panels -->
       </div><!-- /portfolio-layout -->
     </div>
@@ -1309,43 +1304,135 @@ img { display: block; max-width: 100%; }
   <!-- BANKING -->
   <section class="banking-section">
     <div class="container">
-      <div class="banking-inner">
-        <div>
-          <span class="section-eyebrow">Banking BTG</span>
-          <div class="section-title">Banco completo na palma da mão</div>
-          <p class="section-sub">Conta digital, cartões com principalidade e crédito pessoal no ecossistema BTG — tudo integrado à sua carteira de investimentos.</p>
-          <div class="banking-features">
-            <div class="banking-feature"><div class="banking-feature-dot"></div>Aplicação automática do saldo parado</div>
-            <div class="banking-feature"><div class="banking-feature-dot"></div>Cartão de crédito com programa de milhas</div>
-            <div class="banking-feature"><div class="banking-feature-dot"></div>Crédito pessoal com garantia de investimentos</div>
-            <div class="banking-feature"><div class="banking-feature-dot"></div>TED e PIX sem custo</div>
-            <div class="banking-feature"><div class="banking-feature-dot"></div>Débito automático e pagamentos integrados</div>
+      <span class="section-eyebrow">Banking BTG</span>
+      <div class="section-title">Banco completo na palma da mão</div>
+      <p class="section-sub">Conta digital, cartões e crédito no ecossistema BTG — tudo integrado à sua carteira de investimentos.</p>
+
+      <!-- Abas de navegação -->
+      <div class="banking-tabs-nav">
+        <button class="banking-tab-btn active" onclick="switchBankingTab('pf', this)">Soluções para você</button>
+        <button class="banking-tab-btn" onclick="switchBankingTab('pj', this)">Soluções para sua empresa</button>
+      </div>
+
+      <!-- Aba: Pessoa Física -->
+      <div class="banking-tab-panel active" id="banking-pf">
+        <div class="banking-products-grid">
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div class="banking-prod-cat">Conta</div>
+            <div class="banking-prod-title">Conta Digital BTG</div>
+            <p class="banking-prod-desc">TED e PIX sem custo. Saldo aplicado automaticamente no overnight — seu dinheiro parado rende.</p>
           </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <div class="banking-prod-cat">Cartão</div>
+            <div class="banking-prod-title">Cartão de Crédito</div>
+            <p class="banking-prod-desc">Programa de milhas com principalidade BTG. Anuidade zero e controle pelo app integrado à carteira.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="banking-prod-cat">Crédito</div>
+            <div class="banking-prod-title">Crédito Pessoal</div>
+            <p class="banking-prod-desc">Empréstimo com garantia de investimentos. Taxas menores, sem precisar resgatar sua carteira.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="banking-prod-cat">Crédito</div>
+            <div class="banking-prod-title">Home Equity</div>
+            <p class="banking-prod-desc">Crédito com garantia de imóvel. Acesso a grandes valores com parcelas compatíveis e taxas competitivas.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="banking-prod-cat">Pagamentos</div>
+            <div class="banking-prod-title">Débito e Pagamentos</div>
+            <p class="banking-prod-desc">Débito automático, boletos e pagamentos integrados. Tudo em um único app, sem trocar de banco.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div class="banking-prod-cat">Câmbio</div>
+            <div class="banking-prod-title">Câmbio BTG</div>
+            <p class="banking-prod-desc">Remessas internacionais e cartão multimoeda. Taxas competitivas com câmbio BTG direto no app.</p>
+          </div>
+
         </div>
-        <div style="display:flex;align-items:center;justify-content:center;">
-          <div class="banking-cards-mock">
-            <div class="card-mock card-mock-3">
-              <div class="card-mock-logo">BTG Pactual</div>
-              <div>
-                <div class="card-mock-number">•••• •••• •••• 3344</div>
-                <div class="card-mock-btg">powered by BTG</div>
-              </div>
+      </div>
+
+      <!-- Aba: Pessoa Jurídica -->
+      <div class="banking-tab-panel" id="banking-pj">
+        <div class="banking-products-grid">
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
             </div>
-            <div class="card-mock card-mock-2">
-              <div class="card-mock-logo">BTG Pactual</div>
-              <div>
-                <div class="card-mock-number">•••• •••• •••• 2233</div>
-                <div class="card-mock-btg">powered by BTG</div>
-              </div>
-            </div>
-            <div class="card-mock card-mock-1">
-              <div class="card-mock-logo">BTG Pactual</div>
-              <div>
-                <div class="card-mock-number">•••• •••• •••• 1122</div>
-                <div class="card-mock-btg">powered by BTG</div>
-              </div>
-            </div>
+            <div class="banking-prod-cat">Conta</div>
+            <div class="banking-prod-title">Conta PJ BTG</div>
+            <p class="banking-prod-desc">Conta corrente empresarial com TED, PIX e boletos sem custo. Saldo aplicado automaticamente no overnight.</p>
           </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <div class="banking-prod-cat">Cartão</div>
+            <div class="banking-prod-title">Cartão Empresarial</div>
+            <p class="banking-prod-desc">Cartão corporativo com controle de gastos por centro de custo e integração com o sistema financeiro da empresa.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="banking-prod-cat">Crédito</div>
+            <div class="banking-prod-title">Capital de Giro</div>
+            <p class="banking-prod-desc">Linhas de crédito para necessidades operacionais. Aprovação ágil e taxas competitivas para empresas em crescimento.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="banking-prod-cat">Crédito</div>
+            <div class="banking-prod-title">Antecipação de Recebíveis</div>
+            <p class="banking-prod-desc">Antecipe duplicatas, notas fiscais e recebíveis de cartão. Melhore o fluxo de caixa sem comprometer o limite bancário.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="banking-prod-cat">Gestão</div>
+            <div class="banking-prod-title">Conta Escrow</div>
+            <p class="banking-prod-desc">Estrutura de garantia para contratos, M&As e projetos. Controle total dos fluxos com segurança jurídica.</p>
+          </div>
+
+          <div class="banking-prod-card">
+            <div class="banking-prod-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div class="banking-prod-cat">Câmbio</div>
+            <div class="banking-prod-title">Câmbio Corporativo</div>
+            <p class="banking-prod-desc">Remessas, importações e exportações com câmbio BTG. Hedge cambial e consultoria especializada para empresas.</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -1430,14 +1517,6 @@ img { display: block; max-width: 100%; }
   <section class="midia-section">
     <div class="container">
       <div class="midia-inner">
-        <div>
-          <span class="section-eyebrow">Imprensa</span>
-          <div class="section-title">Autem na mídia</div>
-          <p class="section-sub">Nossa história e visão sobre o mercado de investimentos nos principais veículos do país.</p>
-          <a href="#" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:700;color:var(--c-purple-dark);border:1.5px solid var(--border);padding:11px 20px;border-radius:9px;transition:all .2s;">
-            Ver todas as matérias →
-          </a>
-        </div>
         <div class="midia-cards">
           <div class="midia-card">
             <div class="midia-card-source">Infomoney</div>
@@ -1459,6 +1538,14 @@ img { display: block; max-width: 100%; }
             <div class="midia-card-title">Autem registra crescimento de 40% em AuC no primeiro semestre</div>
             <div class="midia-card-date">Mar 2024</div>
           </div>
+        </div>
+        <div>
+          <span class="section-eyebrow">Imprensa</span>
+          <div class="section-title">Autem na mídia</div>
+          <p class="section-sub">Nossa história e visão sobre o mercado de investimentos nos principais veículos do país.</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:700;color:var(--c-purple-dark);border:1.5px solid var(--border);padding:11px 20px;border-radius:9px;transition:all .2s;">
+            Ver todas as matérias →
+          </a>
         </div>
       </div>
     </div>
@@ -1976,6 +2063,14 @@ document.getElementById('modalFaleConosco').addEventListener('click', function(e
 });
 
 // ─── TABS DE PRODUTO ──────────────────────────
+// Banking tabs
+function switchBankingTab(tab, btn) {
+  document.querySelectorAll('.banking-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.banking-tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('banking-' + tab).classList.add('active');
+}
+
 function selectTab(btn, panelId) {
   // Reset tabs
   document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
